@@ -16,33 +16,7 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Authentication
-
-> To authorize, use this code:
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+Seja bem vindo a documentação da API Mobile do ChefsClub
 
 # Session
 
@@ -112,6 +86,8 @@ Destroy a user session.
 `POST https://account.chefsclub.com.br/api/v3/reservations`
 
 # Reservation 
+
+## Create a booking or checkin
 
 ```shell
 curl https://account.chefsclub.com.br/api/v3/reservations \
@@ -187,6 +163,36 @@ Code | Description
 402 | Sem Assinatura
 404/410 | Reserva não mais disponível
 
+
+## Cancel a booking
+
+```shell
+curl https://account.chefsclub.com.br/api/v3/reservations/<ID> \
+  -i -X DELETE \
+  -H "Content-Type: application/json" \
+  -H "X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs=" \
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{ "reservation": 
+  {
+    "id": "10",
+    "canceled_at": "2018-01-17T15:30:00-02:00"
+  }
+}
+```
+
+The endpoint cancels a booking reservation
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the  booking reservation to cancel
+
+
 # Examples
 
 ## Delete a Specific Kitten
@@ -246,3 +252,8 @@ ID | The ID of the kitten to delete
 Remember — a happy kitten is an authenticated kitten!
 </aside>
 
+`Authorization: meowmeowmeow`
+
+<aside class="notice">
+You must replace <code>meowmeowmeow</code> with your personal API key.
+</aside>
