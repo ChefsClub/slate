@@ -222,9 +222,6 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
             <a href="#session" class="toc-h1 toc-link" data-title="Session">Session</a>
               <ul class="toc-list-h2">
                   <li>
@@ -232,6 +229,17 @@
                   </li>
                   <li>
                     <a href="#destroy-a-session" class="toc-h2 toc-link" data-title="Destroy a session">Destroy a session</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#reservation" class="toc-h1 toc-link" data-title="Reservation">Reservation</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-booking-or-checkin" class="toc-h2 toc-link" data-title="Create a booking or checkin">Create a booking or checkin</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-a-booking" class="toc-h2 toc-link" data-title="Cancel a booking">Cancel a booking</a>
                   </li>
               </ul>
           </li>
@@ -256,32 +264,7 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+<p>Seja bem vindo a documentação da API Mobile do ChefsClub</p>
 <h1 id='session'>Session</h1><h2 id='create-a-session'>Create a Session</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/sessions <span class="se">\</span>
   -i -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -X POST <span class="se">\</span>
@@ -346,7 +329,144 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 
 <p>Destroy a user session.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>DELETE https://account.chefsclub.com.br/api/v3/sessions</code></p>
+<p><code>POST https://account.chefsclub.com.br/api/v3/reservations</code></p>
+<h1 id='reservation'>Reservation</h1><h2 id='create-a-booking-or-checkin'>Create a booking or checkin</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/reservations <span class="se">\</span>
+  -i -X POST <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="</span> <span class="se">\</span>
+  -d <span class="s1">'{ "checkin": { "restaurant_id" : 3004 } }'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"reservation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-18T16:30:00-02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-18T18:30:00-02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"savings"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rating"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"booking"</span><span class="w">
+    </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"client"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"James"</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taylor"</span><span class="w">
+      </span><span class="s2">"cpf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99999999999"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"restaurant"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pobre Juan"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cuisines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Francesa"</span><span class="p">],</span><span class="w">
+      </span><span class="s2">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org/photo.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cover_photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org/photo.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rua da aurora"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recife"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PE"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"neighborhood"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Centro"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-23.45960"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45.298743"</span><span class="p">,</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"offer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Desconto na conta toda"</span><span class="w">
+      </span><span class="s2">"restriction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Não vale menu executivo"</span><span class="w">
+      </span><span class="s2">"period"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00 - 11:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Create a checkin or booking a restaurant.</p>
+<h3 id='request-body-2'>Request Body</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>restaurant_id</td>
+<td>The restaurante for the reservation or checkin</td>
+</tr>
+<tr>
+<td>reserve_at (datetime)</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>savings (float)</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>latitude (float)</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>longitude (float)</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>seats (interger)</td>
+<td>optional</td>
+</tr>
+</tbody></table>
+<h3 id='status-codes'>Status Codes:</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>Created</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Restaurante não existente</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Access Token Inválido</td>
+</tr>
+<tr>
+<td>402</td>
+<td>Sem Assinatura</td>
+</tr>
+<tr>
+<td>404/410</td>
+<td>Reserva não mais disponível</td>
+</tr>
+</tbody></table>
+<h2 id='cancel-a-booking'>Cancel a booking</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/reservations/&lt;ID&gt; <span class="se">\</span>
+  -i -X DELETE <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="</span> <span class="se">\</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"reservation"</span><span class="p">:</span><span class="w"> 
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-17T15:30:00-02:00"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The endpoint cancels a booking reservation</p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the  booking reservation to cancel</td>
+</tr>
+</tbody></table>
 <h1 id='examples'>Examples</h1><h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
@@ -374,7 +494,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <p>This endpoint deletes a specific kitten.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -391,6 +511,12 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 
 <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
+</aside>
+
+<p><code>Authorization: meowmeowmeow</code></p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
