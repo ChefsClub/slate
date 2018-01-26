@@ -18,6 +18,51 @@ search: true
 
 Seja bem vindo a documentação da API Mobile do ChefsClub
 
+# Account
+
+## Search an Account
+
+```shell
+curl https://account.chefsclub.com.br/api/v3/accounts/search?email=marolito@gmail.com -i
+```
+
+> If en error occur, the above command returns JSON structured like this:
+
+```json
+{
+  "error":
+    {
+      "description":"Esse cliente é grubster",
+      "raw_errors": "",
+      "code": 409
+    }
+}
+```
+
+This endpoint checks if the email or cpf provided is an chefsclub account
+
+### Request Body
+
+Parameter | Description
+--------- | -----------
+email | The email of the user to search
+cpf | The cpf of the user to search
+oauth_user_id | The user id from the identity provider used to authenticate (Facebook, Google)
+
+### Status Codes:
+Code | Description
+--------- | -----------
+200 | Found
+404 | Not Found
+409 | Grubster Client
+
+
+### HTTP Request
+
+`GET https://account.chefsclub.com.br/api/v3/accounts/search`
+
+## Create an Account
+
 # Session
 
 ## Create a Session
@@ -66,6 +111,14 @@ password | The password should be passed along the email
 oauth_token | The oauth_token from the identity provider used to authenticate (Facebook, Google)
 oauh_provider | The identity provider used to authenticate (Facebook, Google)
 
+### Status Codes:
+Code | Description
+--------- | -----------
+201 | Session created
+206 | Session created, but there're required information missing, usually it's cpf
+400 | Bad Request, usually when the email or cpf is duplicated
+401 | Not authorized, creditials are wrong
+
 ## Destroy a session
 
 ```shell
@@ -85,7 +138,64 @@ Destroy a user session.
 
 `POST https://account.chefsclub.com.br/api/v3/reservations`
 
-# Reservation 
+# Passwords
+
+## Send recovery email
+
+```shell
+curl https://account.chefsclub.com.br/api/v3/recover_passwords \
+  -i -X POST \
+  -H "Content-Type: application/json" \
+  -d '{ "account": { "auth_key" : "email@example.org" } }'
+```
+
+> The above command does't returns anything
+
+This endpoint sends en email to the client with a password recovery token
+
+### HTTP Request
+
+`POST https://account.chefsclub.com.br/api/v3/recover_passwords`
+
+## Recover password
+
+```shell
+curl https://account.chefsclub.com.br/api/v3/recover_passwords \
+  -i -X POST \
+  -H "Content-Type: application/json" \
+  -d '{ 
+        "account": { 
+            "password": "chefs123",
+            "password_confirmation":"chefs123",
+            "token": "so283dg2663" 
+          }
+      }'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "account":
+    {
+      "access_token":"XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs=",
+      "first_name":"Leonardo",
+      "last_name":"Ferreira",
+      "email":"marolito@gmail.com",
+      "uuid":"74e7c0ff-706e-4f88-a560-7bfcaa09356f",
+      "client_id":229544,
+      "referral_link":null
+    }
+}
+```
+
+This endpoint updates the client password if the recovery token is correct and makes a new session to the user
+
+### HTTP Request
+
+`PUT https://account.chefsclub.com.br/api/v3/recover_passwords`
+
+# Reservation
 
 ## Create a booking or checkin
 
