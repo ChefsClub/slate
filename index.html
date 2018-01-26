@@ -222,6 +222,25 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
+            <a href="#account" class="toc-h1 toc-link" data-title="Account">Account</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#search-an-account" class="toc-h2 toc-link" data-title="Search an Account">Search an Account</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#clients" class="toc-h1 toc-link" data-title="Clients">Clients</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-client" class="toc-h2 toc-link" data-title="Create a client">Create a client</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-client" class="toc-h2 toc-link" data-title="Update a client">Update a client</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#session" class="toc-h1 toc-link" data-title="Session">Session</a>
               <ul class="toc-list-h2">
                   <li>
@@ -229,6 +248,17 @@
                   </li>
                   <li>
                     <a href="#destroy-a-session" class="toc-h2 toc-link" data-title="Destroy a session">Destroy a session</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#passwords" class="toc-h1 toc-link" data-title="Passwords">Passwords</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#send-recovery-email" class="toc-h2 toc-link" data-title="Send recovery email">Send recovery email</a>
+                  </li>
+                  <li>
+                    <a href="#recover-password" class="toc-h2 toc-link" data-title="Recover password">Recover password</a>
                   </li>
               </ul>
           </li>
@@ -265,14 +295,204 @@
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
 <p>Seja bem vindo a documentação da API Mobile do ChefsClub</p>
+<h1 id='account'>Account</h1><h2 id='search-an-account'>Search an Account</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/accounts/search?email<span class="o">=</span>marolito@gmail.com -i
+</code></pre>
+<blockquote>
+<p>If en error occur, the above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Esse cliente é grubster"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"raw_errors"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">409</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint checks if the email or cpf provided is an chefsclub account</p>
+<h3 id='request-body'>Request Body</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>The email of the user to search</td>
+</tr>
+<tr>
+<td>cpf</td>
+<td>The cpf of the user to search</td>
+</tr>
+<tr>
+<td>oauth_user_id</td>
+<td>The user id from the identity provider used to authenticate (Facebook, Google)</td>
+</tr>
+</tbody></table>
+<h3 id='status-codes'>Status Codes:</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Found</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Grubster Client</td>
+</tr>
+</tbody></table>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://account.chefsclub.com.br/api/v3/accounts/search</code></p>
+<h1 id='clients'>Clients</h1><h2 id='create-a-client'>Create a client</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/clients <span class="se">\</span>
+  -i -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -X POST <span class="se">\</span>
+  -d <span class="s1">'{
+        "client": {
+          "full_name":"Leonardo Ferreira",
+          "email" : "marolito@gmail.com",
+          "cpf:": "02103459603"
+          "password": "123456",
+          "password_confirmation": "123456"
+         }
+      }'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"account"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"access_token"</span><span class="p">:</span><span class="s2">"XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="s2">"Leonardo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="s2">"Ferreira"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"marolito@gmail.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"74e7c0ff-706e-4f88-a560-7bfcaa09356f"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"client_id"</span><span class="p">:</span><span class="mi">229544</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"referral_link"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Creates a client and a trial subscription</p>
+<h3 id='request-body-2'>Request Body</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>full_name</td>
+<td>Client&#39;s full name</td>
+</tr>
+<tr>
+<td>email</td>
+<td>The email of the user to search</td>
+</tr>
+<tr>
+<td>cpf</td>
+<td>The cpf of the user to search</td>
+</tr>
+<tr>
+<td>password</td>
+<td>self-explaining</td>
+</tr>
+<tr>
+<td>password_confirmation</td>
+<td>self-explaining</td>
+</tr>
+<tr>
+<td><strong>Optional Parameters</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>oauth_user_id</td>
+<td>The user id from the identity provider used to authenticate (Facebook, Google)</td>
+</tr>
+<tr>
+<td>oauth_token</td>
+<td>Server side token to make requests to client information</td>
+</tr>
+<tr>
+<td>oauth_provider</td>
+<td>Facebook or Google</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>self-explaining  (M of F)</td>
+</tr>
+<tr>
+<td>birthdate</td>
+<td>self-explaining</td>
+</tr>
+<tr>
+<td>mobile_number</td>
+<td>self-explaining</td>
+</tr>
+<tr>
+<td>profile_image_url</td>
+<td>User social media photo</td>
+</tr>
+<tr>
+<td>fcm_token</td>
+<td>Firebase token to send push notifications</td>
+</tr>
+<tr>
+<td>device_platform</td>
+<td>Android or iOS</td>
+</tr>
+<tr>
+<td>promocode</td>
+<td>A promocode from a caimpaing in order to increase months at user subscription</td>
+</tr>
+</tbody></table>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST https://account.chefsclub.com.br/api/v3/clients</code></p>
+<h2 id='update-a-client'>Update a client</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/clients/74e7c0ff-706e-4f88-a560-7bfcaa09356f <span class="se">\</span>
+  -i -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -X PUT <span class="se">\</span>
+  -d <span class="s1">'{
+        "client": {
+          "full_name":"Leonardo Ferreira da Silva"
+         }
+      }'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"client"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="s2">"Leonardo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="s2">"Ferreira"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"marolito@gmail.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"74e7c0ff-706e-4f88-a560-7bfcaa09356f"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"client_id"</span><span class="p">:</span><span class="mi">229544</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"referral_link"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Update client information.</p>
+<h3 id='request-body-3'>Request Body</h3>
+<p>Same as the client creations</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>PATCH https://account.chefsclub.com.br/api/v3/clients/:id</code></p>
 <h1 id='session'>Session</h1><h2 id='create-a-session'>Create a Session</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/sessions <span class="se">\</span>
   -i -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -X POST <span class="se">\</span>
-  -d <span class="s1">'{ 
-        "account": { 
+  -d <span class="s1">'{
+        "account": {
           "email" : "marolito@gmail.com",
-          "password": "123456" 
-         } 
+          "password": "123456"
+         }
       }'</span>
 </code></pre>
 <blockquote>
@@ -292,9 +512,9 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Create user session based on the possible credentials.</p>
-<h3 id='http-request'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET https://account.chefsclub.com.br/api/v3/sessions</code></p>
-<h3 id='request-body'>Request Body</h3>
+<h3 id='request-body-4'>Request Body</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -318,6 +538,30 @@
 <td>The identity provider used to authenticate (Facebook, Google)</td>
 </tr>
 </tbody></table>
+<h3 id='status-codes-2'>Status Codes:</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>Session created</td>
+</tr>
+<tr>
+<td>206</td>
+<td>Session created, but there&#39;re required information missing, usually it&#39;s cpf</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request, usually when the email or cpf is duplicated</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Not authorized, creditials are wrong</td>
+</tr>
+</tbody></table>
 <h2 id='destroy-a-session'>Destroy a session</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/sessions <span class="se">\</span>
   -i -X DELETE <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
@@ -328,8 +572,50 @@
 </blockquote>
 
 <p>Destroy a user session.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST https://account.chefsclub.com.br/api/v3/reservations</code></p>
+<h1 id='passwords'>Passwords</h1><h2 id='send-recovery-email'>Send recovery email</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/recover_passwords <span class="se">\</span>
+  -i -X POST <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{ "account": { "auth_key" : "email@example.org" } }'</span>
+</code></pre>
+<blockquote>
+<p>The above command does&#39;t returns anything</p>
+</blockquote>
+
+<p>This endpoint sends en email to the client with a password recovery token</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST https://account.chefsclub.com.br/api/v3/recover_passwords</code></p>
+<h2 id='recover-password'>Recover password</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/recover_passwords <span class="se">\</span>
+  -i -X POST <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{
+        "account": {
+            "password": "chefs123",
+            "password_confirmation":"chefs123",
+            "token": "so283dg2663"
+          }
+      }'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"account"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"access_token"</span><span class="p">:</span><span class="s2">"XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="s2">"Leonardo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="s2">"Ferreira"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"marolito@gmail.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"74e7c0ff-706e-4f88-a560-7bfcaa09356f"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"client_id"</span><span class="p">:</span><span class="mi">229544</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"referral_link"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint updates the client password if the recovery token is correct and makes a new session to the user</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>PUT https://account.chefsclub.com.br/api/v3/recover_passwords</code></p>
 <h1 id='reservation'>Reservation</h1><h2 id='create-a-booking-or-checkin'>Create a booking or checkin</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/reservations <span class="se">\</span>
   -i -X POST <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
@@ -379,7 +665,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Create a checkin or booking a restaurant.</p>
-<h3 id='request-body-2'>Request Body</h3>
+<h3 id='request-body-5'>Request Body</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -411,7 +697,7 @@
 <td>optional</td>
 </tr>
 </tbody></table>
-<h3 id='status-codes'>Status Codes:</h3>
+<h3 id='status-codes-3'>Status Codes:</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -447,7 +733,7 @@
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"reservation"</span><span class="p">:</span><span class="w"> 
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"reservation"</span><span class="p">:</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-17T15:30:00-02:00"</span><span class="w">
@@ -492,7 +778,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
