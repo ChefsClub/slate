@@ -61,7 +61,106 @@ Code | Description
 
 `GET https://account.chefsclub.com.br/api/v3/accounts/search`
 
-## Create an Account
+# Clients
+
+## Create a client
+
+```shell
+curl https://account.chefsclub.com.br/api/v3/clients \
+  -i -H "Content-Type: application/json" \
+  -X POST \
+  -d '{
+        "client": {
+          "full_name":"Leonardo Ferreira",
+          "email" : "marolito@gmail.com",
+          "cpf:": "02103459603"
+          "password": "123456",
+          "password_confirmation": "123456"
+         }
+      }'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "account":
+    {
+      "access_token":"XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs=",
+      "first_name":"Leonardo",
+      "last_name":"Ferreira",
+      "email":"marolito@gmail.com",
+      "uuid":"74e7c0ff-706e-4f88-a560-7bfcaa09356f",
+      "client_id":229544,
+      "referral_link":null
+    }
+}
+```
+
+Creates a client and a trial subscription
+
+### Request Body
+
+Parameter | Description
+--------- | -----------
+full_name | Client's full name
+email | The email of the user to search
+cpf | The cpf of the user to search
+password | self-explaining
+password_confirmation | self-explaining
+**Optional Parameters** |
+oauth_user_id | The user id from the identity provider used to authenticate (Facebook, Google)
+oauth_token | Server side token to make requests to client information
+oauth_provider | Facebook or Google
+gender | self-explaining  (M of F)
+birthdate | self-explaining
+mobile_number | self-explaining
+profile_image_url | User social media photo
+fcm_token | Firebase token to send push notifications
+device_platform | Android or iOS
+promocode | A promocode from a caimpaing in order to increase months at user subscription
+
+### HTTP Request
+
+`POST https://account.chefsclub.com.br/api/v3/clients`
+
+## Update a client
+
+````shell
+curl https://account.chefsclub.com.br/api/v3/clients/74e7c0ff-706e-4f88-a560-7bfcaa09356f \
+  -i -H "Content-Type: application/json" \
+  -X PUT \
+  -d '{
+        "client": {
+          "full_name":"Leonardo Ferreira da Silva"
+         }
+      }'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "client":
+    {
+      "first_name":"Leonardo",
+      "last_name":"Ferreira",
+      "email":"marolito@gmail.com",
+      "uuid":"74e7c0ff-706e-4f88-a560-7bfcaa09356f",
+      "client_id":229544,
+      "referral_link":null
+    }
+}
+```
+
+Update client information.
+
+### Request Body
+Same as the client creations
+
+### HTTP Request
+
+`PATCH https://account.chefsclub.com.br/api/v3/clients/:id`
 
 # Session
 
@@ -71,11 +170,11 @@ Code | Description
 curl https://account.chefsclub.com.br/api/v3/sessions \
   -i -H "Content-Type: application/json" \
   -X POST \
-  -d '{ 
-        "account": { 
+  -d '{
+        "account": {
           "email" : "marolito@gmail.com",
-          "password": "123456" 
-         } 
+          "password": "123456"
+         }
       }'
 ```
 
@@ -163,11 +262,11 @@ This endpoint sends en email to the client with a password recovery token
 curl https://account.chefsclub.com.br/api/v3/recover_passwords \
   -i -X POST \
   -H "Content-Type: application/json" \
-  -d '{ 
-        "account": { 
+  -d '{
+        "account": {
             "password": "chefs123",
             "password_confirmation":"chefs123",
-            "token": "so283dg2663" 
+            "token": "so283dg2663"
           }
       }'
 ```
@@ -286,7 +385,7 @@ curl https://account.chefsclub.com.br/api/v3/reservations/<ID> \
 > The above command returns JSON structured like this:
 
 ```json
-{ "reservation": 
+{ "reservation":
   {
     "id": "10",
     "canceled_at": "2018-01-17T15:30:00-02:00"
