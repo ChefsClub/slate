@@ -402,6 +402,323 @@ Parameter | Description
 ID | The ID of the  booking reservation to cancel
 
 
+---
+
+# Cities
+
+## Retrieve Cities
+
+`GET https://example.com/api/v6/cities`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+latitude |
+longitude |
+
+# Highlighted Restaurants
+
+## Retrieve list
+
+`GET https://example.com/api/v6/restaurants-list`
+
+```json
+{
+  "metadata": {
+    "results_found": 1737,
+    "time_in_milliseconds": 4,
+    "pagination": {
+      "current_page": 1,
+      "total_pages": 70,
+      "has_next_page": true,
+      "has_previous_page": false,
+      "next_page": 2,
+      "previous_page": null
+    }
+  },
+  "restaurants": [
+    {
+      "uuid": "4885-ssdfsdfdsf-fdsf-34534",
+      "name": "Lá no Escondidinho",
+      "main_cuisine": "Brasileira",
+      "address": {
+        "neighbourhood": "Brooklin",
+        "latitude": 32425658679070,
+        "longitude": 4353474574577
+      },
+      "photos": [
+        {
+          "type": "thumb",
+          "url": "https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"
+        }
+      ],
+      "available_offers": [
+        "checkin",
+        "book",
+        "delivery"
+      ],
+      "offers": [
+        {
+          "discount": 20,
+          "benefit": "ganhe uma sobremesa"
+        }
+      ],
+      "rating": 4.6
+    }
+  ]
+}
+```
+
+# Filters
+
+## Retrieve filters
+
+`GET https://example.com/api/v6/filters`
+
+```json
+{
+  "filters": [
+    {
+      "type": "city",
+      "load_more": false,
+      "results": [
+        {
+          "id": 27,
+          "slug": "nome-do-slug",
+          "name": "Belo Horizonte"
+        },
+        {
+          "id": 11,
+          "slug": "nome-do-slug",
+          "name": "Brasilia"
+        },
+        {
+          "id": 26,
+          "slug": "nome-do-slug",
+          "name": "Campinas e regiao"
+        },
+        {
+          "id": 22,
+          "slug": "nome-do-slug",
+          "name": "Curitiba"
+        },
+        {
+          "id": 30,
+          "slug": "nome-do-slug",
+          "name": "Porto Alegre"
+        },
+        {
+          "id": 21,
+          "slug": "nome-do-slug",
+          "name": "Rio de Janeiro"
+        },
+        {
+          "id": 1,
+          "slug": "nome-do-slug",
+          "name": "Sao Paulo"
+        }
+      ]
+    },
+    {
+      "type": "people",
+      "load_more": false,
+      "results": []
+    },
+    {
+      "type": "availability",
+      "load_more": false,
+      "results": []
+    },
+    {
+      "type": "cuisine",
+      "load_more": true,
+      "results": [
+        {
+          "id": 2,
+          "slug": "nome-do-slug",
+          "name": "Brasileira"
+        },
+        {
+          "id": 8,
+          "slug": "nome-do-slug",
+          "name": "ContemporiÂ¢nea"
+        },
+        {
+          "id": 5,
+          "slug": "nome-do-slug",
+          "name": "Italiana"
+        },
+        {
+          "id": 13,
+          "slug": "nome-do-slug",
+          "name": "Japonesa"
+        },
+        {
+          "id": 15,
+          "slug": "nome-do-slug",
+          "name": "Pizza"
+        },
+        {
+          "id": 14,
+          "slug": "nome-do-slug",
+          "name": "Variada"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "load_more": false,
+      "results": [
+        {
+          "id": 1,
+          "slug": "nome-do-slug",
+          "name": "a la carte"
+        },
+        {
+          "id": 10,
+          "slug": "nome-do-slug",
+          "name": "Bar"
+        },
+        {
+          "id": 8,
+          "slug": "nome-do-slug",
+          "name": "Buffet"
+        },
+        {
+          "id": 7,
+          "slug": "nome-do-slug",
+          "name": "Cafeteria"
+        },
+        {
+          "id": 4,
+          "slug": "nome-do-slug",
+          "name": "Comida riÂ¡pida"
+        },
+        {
+          "id": 6,
+          "slug": "nome-do-slug",
+          "name": "Executivo"
+        },
+        {
+          "id": 5,
+          "slug": "nome-do-slug",
+          "name": "Food Truck"
+        },
+        {
+          "id": 3,
+          "slug": "nome-do-slug",
+          "name": "Rodizio"
+        },
+        {
+          "id": 11,
+          "slug": "nome-do-slug",
+          "name": "SaudiÂ¡vel"
+        },
+        {
+          "id": 12,
+          "slug": "nome-do-slug",
+          "name": "Sobremesa"
+        }
+      ]
+    },
+    {
+      "type": "ticket",
+      "load_more": false,
+      "results": [
+        {
+          "id": 1,
+          "slug": "nome-do-slug",
+          "name": "AtiÂ© R$25 por pessoa"
+        },
+        {
+          "id": 2,
+          "slug": "nome-do-slug",
+          "name": "De R$25 atiÂ© R$50 por pessoa"
+        },
+        {
+          "id": 3,
+          "slug": "nome-do-slug",
+          "name": "De R$50 atiÂ© R$75 por pessoa"
+        },
+        {
+          "id": 4,
+          "slug": "nome-do-slug",
+          "name": "De R$75 atiÂ© R$100 por pessoa"
+        },
+        {
+          "id": 5,
+          "slug": "nome-do-slug",
+          "name": "Acima de R$100 por pessoa"
+        }
+      ]
+    },
+    {
+      "type": "neighbourhood",
+      "load_more": true,
+      "results": [
+        {
+          "id": 6,
+          "slug": "nome-do-slug",
+          "name": "Itaim Bibi"
+        },
+        {
+          "id": 1,
+          "slug": "nome-do-slug",
+          "name": "Jardins"
+        },
+        {
+          "id": 5,
+          "slug": "nome-do-slug",
+          "name": "Moema"
+        },
+        {
+          "id": 13,
+          "slug": "nome-do-slug",
+          "name": "Perdizes"
+        },
+        {
+          "id": 3,
+          "slug": "nome-do-slug",
+          "name": "Pinheiros"
+        },
+        {
+          "id": 12,
+          "slug": "nome-do-slug",
+          "name": "Vila Olimpia"
+        }
+      ]
+    },
+    {
+      "type": "order",
+      "load_more": false,
+      "results": [
+        {
+          "id": "recommended",
+          "slug": "nome-do-slug",
+          "name": "Recomendados"
+        },
+        {
+          "id": "nearest",
+          "slug": "nome-do-slug",
+          "name": "Mais proximos"
+        },
+        {
+          "id": "newest",
+          "slug": "nome-do-slug",
+          "name": "Novidades"
+        },
+        {
+          "id": "ranking",
+          "slug": "nome-do-slug",
+          "name": "Destaques"
+        }
+      ]
+    }
+  ]
+}
+```
+
 # Examples
 
 ## Delete a Specific Kitten
