@@ -287,6 +287,20 @@
                   <li>
                     <a href="#retrieve-list" class="toc-h2 toc-link" data-title="Retrieve list">Retrieve list</a>
                   </li>
+                  <li>
+                    <a href="#get-restaurant-list" class="toc-h2 toc-link" data-title="Get restaurant list">Get restaurant list</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#restaurants" class="toc-h1 toc-link" data-title="Restaurants">Restaurants</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#retrieve-restaurants" class="toc-h2 toc-link" data-title="Retrieve restaurants">Retrieve restaurants</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-restaurant" class="toc-h2 toc-link" data-title="Get a restaurant">Get a restaurant</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -294,6 +308,9 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#retrieve-filters" class="toc-h2 toc-link" data-title="Retrieve filters">Retrieve filters</a>
+                  </li>
+                  <li>
+                    <a href="#get-filters" class="toc-h2 toc-link" data-title="Get filters">Get filters</a>
                   </li>
               </ul>
           </li>
@@ -799,6 +816,15 @@
 </tbody></table>
 <h1 id='highlighted-restaurants'>Highlighted Restaurants</h1><h2 id='retrieve-list'>Retrieve list</h2>
 <p><code>GET https://example.com/api/v6/restaurants-list</code></p>
+<h2 id='get-restaurant-list'>Get restaurant list</h2><pre class="highlight shell tab-shell"><code>curl https://example.com/... <span class="se">\</span>
+  -i -X GET <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="</span> <span class="se">\</span>
+  -d <span class="s1">'{ ... }'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"results_found"</span><span class="p">:</span><span class="w"> </span><span class="mi">1737</span><span class="p">,</span><span class="w">
@@ -839,12 +865,185 @@
           </span><span class="s2">"benefit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ganhe uma sobremesa"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"rating"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.6</span><span class="w">
+      </span><span class="s2">"average_rating"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.6</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='filters'>Filters</h1><h2 id='retrieve-filters'>Retrieve filters</h2>
+</span></code></pre><h3 id='request-body-6'>Request Body</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>example (type)</td>
+<td>Example description</td>
+</tr>
+</tbody></table>
+<h3 id='status-codes-4'>Status Codes:</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>Created</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Access Token Inválido</td>
+</tr>
+<tr>
+<td>402</td>
+<td>Sem Assinatura</td>
+</tr>
+</tbody></table>
+<h1 id='restaurants'>Restaurants</h1><h2 id='retrieve-restaurants'>Retrieve restaurants</h2>
+<p><code>GET https://example.com/api/v6/restaurants</code></p>
+<h2 id='get-a-restaurant'>Get a restaurant</h2><pre class="highlight shell tab-shell"><code>curl https://example.com/... <span class="se">\</span>
+  -i -X GET <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="</span> <span class="se">\</span>
+  -d <span class="s1">'{ ... }'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"restaurant.name"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uiuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"restaurant.id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="s2">"restaurant.active"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"restaurant.name.parameterize"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price_range"</span><span class="p">:</span><span class="w"> </span><span class="s2">"restaurant.price_range"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"available_offers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"checkin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"book"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"delivery"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"offers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"benefit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nil"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"restrictions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"executivo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rodizio"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"custom_restriction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"restaurant.usage_restrictions.to_s"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"formatted_availability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Segunda a Sexta das 10:00 as 15:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I18n.localize"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ends_in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I18n.localize()"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"availability"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"checkin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"book"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"benefit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ganhe um sorvete de chocolate por pessoa"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"restrictions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"executivo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rodizio"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"custom_restriction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"restaurant.usage_restrictions.to_s"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"formatted_availability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Segunda a Sexta das 10:00 as 15:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I18n.localize"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ends_in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I18n.localize()"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"availability"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"checkin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"book"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"restaurant.site"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"descriptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pt-br"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"restaurant.description"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"restrictions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"restaurant.usage_restrictions.to_s"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"formatted_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"979879798798"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"review_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"average_rating"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"restaurant"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"complement"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"neighborhood"</span><span class="p">:</span><span class="w"> </span><span class="s2">"neigh"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">23.99999999</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">47.999999999</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rio de janeiro"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rj"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"thumb"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cover"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gallery"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"main_cuisine "</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brasileira"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cuisines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"brasileira"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contemporÃ¢nea"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-body-7'>Request Body</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>example (type)</td>
+<td>Example description</td>
+</tr>
+</tbody></table>
+<h3 id='status-codes-5'>Status Codes:</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>Created</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Access Token Inválido</td>
+</tr>
+<tr>
+<td>402</td>
+<td>Sem Assinatura</td>
+</tr>
+</tbody></table>
+<h1 id='filters'>Filters</h1><h2 id='retrieve-filters'>Retrieve filters</h2>
 <p><code>GET https://example.com/api/v6/filters</code></p>
+<h2 id='get-filters'>Get filters</h2><pre class="highlight shell tab-shell"><code>curl https://example.com/... <span class="se">\</span>
+  -i -X GET <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="</span> <span class="se">\</span>
+  -d <span class="s1">'{ ... }'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -1085,7 +1284,39 @@
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='examples'>Examples</h1><h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+</span></code></pre><h3 id='request-body-8'>Request Body</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>example (type)</td>
+<td>Example description</td>
+</tr>
+</tbody></table>
+<h3 id='status-codes-6'>Status Codes:</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>Created</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Access Token Inválido</td>
+</tr>
+<tr>
+<td>402</td>
+<td>Sem Assinatura</td>
+</tr>
+</tbody></table>
+<h1 id='examples'>Examples</h1><h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
 <span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
