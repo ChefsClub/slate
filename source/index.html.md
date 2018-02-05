@@ -423,6 +423,18 @@ longitude |
 
 `GET https://example.com/api/v6/restaurants-list`
 
+## Get restaurant list
+
+```shell
+curl https://example.com/... \
+  -i -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs=" \
+  -d '{ ... }'
+```
+
+> The above command returns JSON structured like this:
+
 ```json
 {
   "metadata": {
@@ -464,17 +476,169 @@ longitude |
           "benefit": "ganhe uma sobremesa"
         }
       ],
-      "rating": 4.6
+      "average_rating": 4.6
     }
   ]
 }
 ```
+
+### Request Body
+
+Parameter | Description
+--------- | -----------
+example (type) | Example description
+
+
+### Status Codes:
+
+Code | Description
+--------- | -----------
+201 | Created
+401 | Access Token Inválido
+402 | Sem Assinatura
+
+# Restaurants
+
+## Retrieve restaurants
+
+`GET https://example.com/api/v6/restaurants`
+
+## Get a restaurant
+
+```shell
+curl https://example.com/... \
+  -i -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs=" \
+  -d '{ ... }'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "name": "restaurant.name",
+  "uiuid": "restaurant.id",
+  "active": "restaurant.active",
+  "slug": "restaurant.name.parameterize",
+  "price_range": "restaurant.price_range",
+  "available_offers": [
+    "checkin",
+    "book",
+    "delivery"
+  ],
+  "offers": [
+    {
+      "discount": 20,
+      "benefit": "nil",
+      "restrictions": [
+        "executivo",
+        "rodizio"
+      ],
+      "custom_restriction": "restaurant.usage_restrictions.to_s",
+      "formatted_availability": "Segunda a Sexta das 10:00 as 15:00",
+      "starts_at": "I18n.localize",
+      "ends_in": "I18n.localize()",
+      "availability": [
+        "checkin",
+        "book",
+        "delivery"
+      ]
+    },
+    {
+      "discount": 20,
+      "benefit": "Ganhe um sorvete de chocolate por pessoa",
+      "restrictions": [
+        "executivo",
+        "rodizio"
+      ],
+      "custom_restriction": "restaurant.usage_restrictions.to_s",
+      "formatted_availability": "Segunda a Sexta das 10:00 as 15:00",
+      "starts_at": "I18n.localize",
+      "ends_in": "I18n.localize()",
+      "availability": [
+        "checkin",
+        "book"
+      ]
+    }
+  ],
+  "website": "restaurant.site",
+  "descriptions": [
+    {
+      "language": "pt-br",
+      "text": "restaurant.description",
+      "restrictions": "restaurant.usage_restrictions.to_s"
+    }
+  ],
+  "formatted_phone_number": "979879798798",
+  "review_count": 10,
+  "average_rating": 5,
+  "address": {
+    "street": "restaurant",
+    "number": "",
+    "complement": "",
+    "neighborhood": "neigh",
+    "location": {
+      "latitude": 23.99999999,
+      "longitude": 47.999999999
+    },
+    "city": "rio de janeiro",
+    "state": "rj"
+  },
+  "photos": [
+    {
+      "type": "thumb",
+      "url": "https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"
+    },
+    {
+      "type": "cover",
+      "url": "https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"
+    },
+    {
+      "type": "gallery",
+      "url": "https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"
+    }
+  ],
+  "main_cuisine ": "Brasileira",
+  "cuisines": [
+    "brasileira",
+    "contemporÃ¢nea"
+  ]
+}
+```
+
+### Request Body
+
+Parameter | Description
+--------- | -----------
+example (type) | Example description
+
+
+### Status Codes:
+
+Code | Description
+--------- | -----------
+201 | Created
+401 | Access Token Inválido
+402 | Sem Assinatura
 
 # Filters
 
 ## Retrieve filters
 
 `GET https://example.com/api/v6/filters`
+
+## Get filters
+
+```shell
+curl https://example.com/... \
+  -i -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs=" \
+  -d '{ ... }'
+```
+
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -718,6 +882,21 @@ longitude |
   ]
 }
 ```
+
+### Request Body
+
+Parameter | Description
+--------- | -----------
+example (type) | Example description
+
+
+### Status Codes:
+
+Code | Description
+--------- | -----------
+201 | Created
+401 | Access Token Inválido
+402 | Sem Assinatura
 
 # Examples
 
