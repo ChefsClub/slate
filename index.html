@@ -274,21 +274,13 @@
               </ul>
           </li>
           <li>
-            <a href="#cities" class="toc-h1 toc-link" data-title="Cities">Cities</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#retrieve-cities" class="toc-h2 toc-link" data-title="Retrieve Cities">Retrieve Cities</a>
-                  </li>
-              </ul>
+            <a href="#api-de-busca-de-restaurantes" class="toc-h1 toc-link" data-title="API de Busca de Restaurantes">API de Busca de Restaurantes</a>
           </li>
           <li>
-            <a href="#highlighted-restaurants" class="toc-h1 toc-link" data-title="Highlighted Restaurants">Highlighted Restaurants</a>
+            <a href="#areas" class="toc-h1 toc-link" data-title="Areas">Areas</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#retrieve-list" class="toc-h2 toc-link" data-title="Retrieve list">Retrieve list</a>
-                  </li>
-                  <li>
-                    <a href="#get-restaurant-list" class="toc-h2 toc-link" data-title="Get restaurant list">Get restaurant list</a>
+                    <a href="#retrieve-areeas" class="toc-h2 toc-link" data-title="Retrieve Areeas">Retrieve Areeas</a>
                   </li>
               </ul>
           </li>
@@ -300,6 +292,15 @@
                   </li>
                   <li>
                     <a href="#get-a-restaurant" class="toc-h2 toc-link" data-title="Get a restaurant">Get a restaurant</a>
+                  </li>
+                  <li>
+                    <a href="#highlighted-restaurants" class="toc-h2 toc-link" data-title="Highlighted Restaurants">Highlighted Restaurants</a>
+                  </li>
+                  <li>
+                    <a href="#search-by-name-autocomplete" class="toc-h2 toc-link" data-title="Search by Name (Autocomplete)">Search by Name (Autocomplete)</a>
+                  </li>
+                  <li>
+                    <a href="#reservation-availability" class="toc-h2 toc-link" data-title="Reservation availability">Reservation availability</a>
                   </li>
               </ul>
           </li>
@@ -796,8 +797,42 @@
 </tbody></table>
 
 <hr>
-<h1 id='cities'>Cities</h1><h2 id='retrieve-cities'>Retrieve Cities</h2>
-<p><code>GET https://example.com/api/v6/cities</code></p>
+<h1 id='api-de-busca-de-restaurantes'>API de Busca de Restaurantes</h1>
+<p>Essa API tem um outro endpoint.</p>
+<h1 id='areas'>Areas</h1><h2 id='retrieve-areeas'>Retrieve Areeas</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/areas <span class="se">\</span>
+  -i -X GET <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"current_area"</span><span class="p">:</span><span class="w">   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12"</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rio de Janeio"</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rio-de-janeio"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"areas"</span><span class="p">:</span><span class="w">
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12"</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rio de Janeio"</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rio-de-janeio"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13"</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"São Paulo"</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sao-paulo"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14"</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recife e Região"</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recife-e-região"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Areas is a short for Interest Areas, at our api we both have the concept of city and interest areas. An interest areas can be composed by some neighboorhoods, cities or city areas.
+Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -814,13 +849,13 @@
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='highlighted-restaurants'>Highlighted Restaurants</h1><h2 id='retrieve-list'>Retrieve list</h2>
-<p><code>GET https://example.com/api/v6/restaurants-list</code></p>
-<h2 id='get-restaurant-list'>Get restaurant list</h2><pre class="highlight shell tab-shell"><code>curl https://example.com/... <span class="se">\</span>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET https://search.chefsclub.com.br/api/v6/areas</code></p>
+<h1 id='restaurants'>Restaurants</h1><h2 id='retrieve-restaurants'>Retrieve restaurants</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants <span class="se">\</span>
   -i -X GET <span class="se">\</span>
-  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -H <span class="s2">"X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="</span> <span class="se">\</span>
-  -d <span class="s1">'{ ... }'</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'latitude=-23.0984'</span> <span class="se">\</span>
+  -d <span class="s1">'longitide=-23.0984'</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -869,7 +904,7 @@
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-body-6'>Request Body</h3>
+</span></code></pre><h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -877,37 +912,23 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>example (type)</td>
-<td>Example description</td>
+<td>latitude</td>
+<td></td>
+</tr>
+<tr>
+<td>longititude</td>
+<td></td>
+</tr>
+<tr>
+<td>area_id</td>
+<td>The area ID to retrieve the highlights</td>
 </tr>
 </tbody></table>
-<h3 id='status-codes-4'>Status Codes:</h3>
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>201</td>
-<td>Created</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Access Token Inválido</td>
-</tr>
-<tr>
-<td>402</td>
-<td>Sem Assinatura</td>
-</tr>
-</tbody></table>
-<h1 id='restaurants'>Restaurants</h1><h2 id='retrieve-restaurants'>Retrieve restaurants</h2>
-<p><code>GET https://example.com/api/v6/restaurants</code></p>
-<h2 id='get-a-restaurant'>Get a restaurant</h2><pre class="highlight shell tab-shell"><code>curl https://example.com/... <span class="se">\</span>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>GET https://search.chefsclub.com.br/api/v6/restaurants</code></p>
+<h2 id='get-a-restaurant'>Get a restaurant</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d<span class="sb">`</span> <span class="se">\</span>
   -i -X GET <span class="se">\</span>
-  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -H <span class="s2">"X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="</span> <span class="se">\</span>
-  -d <span class="s1">'{ ... }'</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1001,7 +1022,7 @@
     </span><span class="s2">"contemporÃ¢nea"</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-body-7'>Request Body</h3>
+</span></code></pre><h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1009,33 +1030,205 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>example (type)</td>
-<td>Example description</td>
+<td>uuid</td>
+<td>the restaurant uuid</td>
 </tr>
 </tbody></table>
-<h3 id='status-codes-5'>Status Codes:</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>GET https://search.chefsclub.com.br/api/v6/restaurants/&lt;UUID&gt;</code></p>
+<h2 id='highlighted-restaurants'>Highlighted Restaurants</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants/highlights <span class="se">\</span>
+  -i -X GET <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'area_id=14'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"results_found"</span><span class="p">:</span><span class="w"> </span><span class="mi">1737</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time_in_milliseconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"has_next_page"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"has_previous_page"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"next_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"previous_page"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"restaurants"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4885-ssdfsdfdsf-fdsf-34534"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lá no Escondidinho"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"main_cuisine"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brasileira"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"neighbourhood"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brooklin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mi">32425658679070</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mi">4353474574577</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"thumb"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"available_offers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"checkin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"book"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"offers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"benefit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ganhe uma sobremesa"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"average_rating"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.6</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='url-parameters-5'>URL Parameters</h3>
 <table><thead>
 <tr>
-<th>Code</th>
+<th>Parameter</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>201</td>
-<td>Created</td>
+<td>latitude</td>
+<td></td>
 </tr>
 <tr>
-<td>401</td>
-<td>Access Token Inválido</td>
+<td>longititude</td>
+<td></td>
 </tr>
 <tr>
-<td>402</td>
-<td>Sem Assinatura</td>
+<td>area_id</td>
+<td>The area ID to retrieve the highlights</td>
 </tr>
 </tbody></table>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>GET https://search.chefsclub.com.br/api/v6/restaurants/highlights</code></p>
+<h2 id='search-by-name-autocomplete'>Search by Name (Autocomplete)</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants/autocomplete <span class="se">\</span>
+  -i -X GET <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'q=Buda'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"results_found"</span><span class="p">:</span><span class="w"> </span><span class="mi">1737</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time_in_milliseconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"has_next_page"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"has_previous_page"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"next_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"previous_page"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"restaurants"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4885-ssdfsdfdsf-fdsf-34534"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lá no Escondidinho"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"main_cuisine"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brasileira"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"neighbourhood"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brooklin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mi">32425658679070</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mi">4353474574577</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"thumb"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"available_offers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"checkin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"book"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+     </span><span class="s2">"offers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"benefit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ganhe uma sobremesa"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"average_rating"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.6</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='url-parameters-6'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>q</td>
+<td>The search term</td>
+</tr>
+</tbody></table>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>GET https://search.chefsclub.com.br/api/v6/restaurants/autocomplete</code></p>
+<h2 id='reservation-availability'>Reservation availability</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d/availability <span class="se">\</span>
+  -i -X GET <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"availabilities"</span><span class="p">:</span><span class="w"> 
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"maximium_seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"available_dates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"2017-01-20"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2017-01-21"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2017-01-22"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2017-01-23"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2017-01-24"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2017-01-25"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"available_hours"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"2017-01-20"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"12:00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"12:30"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"13:00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"13:30"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"14:00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"14:30"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='url-parameters-7'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seats</td>
+<td>Number of seats(people) to reserver</td>
+</tr>
+<tr>
+<td>date</td>
+<td>The date to retreave the times</td>
+</tr>
+</tbody></table>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>GET https://search.chefsclub.com.br/api/v6/restaurants/&lt;UUID&gt;/availability</code></p>
 <h1 id='filters'>Filters</h1><h2 id='retrieve-filters'>Retrieve filters</h2>
-<p><code>GET https://example.com/api/v6/filters</code></p>
-<h2 id='get-filters'>Get filters</h2><pre class="highlight shell tab-shell"><code>curl https://example.com/... <span class="se">\</span>
+<p><code>GET https://search.chefsclub.com.br/api/v6/filters</code></p>
+<h2 id='get-filters'>Get filters</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/filters <span class="se">\</span>
   -i -X GET <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -H <span class="s2">"X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="</span> <span class="se">\</span>
@@ -1284,39 +1477,7 @@
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-body-8'>Request Body</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>example (type)</td>
-<td>Example description</td>
-</tr>
-</tbody></table>
-<h3 id='status-codes-6'>Status Codes:</h3>
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>201</td>
-<td>Created</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Access Token Inválido</td>
-</tr>
-<tr>
-<td>402</td>
-<td>Sem Assinatura</td>
-</tr>
-</tbody></table>
-<h1 id='examples'>Examples</h1><h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+</span></code></pre><h1 id='examples'>Examples</h1><h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
 <span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -1341,9 +1502,9 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-3'>URL Parameters</h3>
+<h3 id='url-parameters-8'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
