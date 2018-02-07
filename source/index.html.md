@@ -404,11 +404,52 @@ ID | The ID of the  booking reservation to cancel
 
 ---
 
-# Cities
 
-## Retrieve Cities
+# API de Busca de Restaurantes
 
-`GET https://example.com/api/v6/cities`
+Essa API tem um outro endpoint.
+
+# Areas
+
+## Retrieve Areeas
+
+```shell
+curl https://search.chefsclub.com.br/api/v6/areas \
+  -i -X GET \
+  -H "Content-Type: application/json"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{ "current_area":   {
+      "id": "12"
+      "name": "Rio de Janeio"
+      "slug": "rio-de-janeio"
+    },
+  "areas":
+  [
+    {
+      "id": "12"
+      "name": "Rio de Janeio"
+      "slug": "rio-de-janeio"
+    },
+     {
+      "id": "13"
+      "name": "São Paulo"
+      "slug": "sao-paulo"
+    },
+    {
+      "id": "14"
+      "name": "Recife e Região"
+      "slug": "recife-e-região"
+    }
+  ]
+}
+```
+
+Areas is a short for Interest Areas, at our api we both have the concept of city and interest areas. An interest areas can be composed by some neighboorhoods, cities or city areas.
+Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)
 
 ### URL Parameters
 
@@ -417,20 +458,20 @@ Parameter | Description
 latitude |
 longitude |
 
-# Highlighted Restaurants
+### HTTP Request
 
-## Retrieve list
+`GET https://search.chefsclub.com.br/api/v6/areas`
 
-`GET https://example.com/api/v6/restaurants-list`
+# Restaurants
 
-## Get restaurant list
+## Retrieve restaurants
 
 ```shell
-curl https://example.com/... \
+curl https://search.chefsclub.com.br/api/v6/restaurants \
   -i -X GET \
-  -H "Content-Type: application/json" \
-  -H "X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs=" \
-  -d '{ ... }'
+  -H "Content-Type: application/json"
+  -d 'latitude=-23.0984' \
+  -d 'longitide=-23.0984'
 ```
 
 > The above command returns JSON structured like this:
@@ -482,35 +523,24 @@ curl https://example.com/... \
 }
 ```
 
-### Request Body
+###  URL Parameters
 
 Parameter | Description
 --------- | -----------
-example (type) | Example description
+latitude |
+longititude |
+area_id | The area ID to retrieve the highlights
 
+### HTTP Request
 
-### Status Codes:
-
-Code | Description
---------- | -----------
-201 | Created
-401 | Access Token Inválido
-402 | Sem Assinatura
-
-# Restaurants
-
-## Retrieve restaurants
-
-`GET https://example.com/api/v6/restaurants`
+`GET https://search.chefsclub.com.br/api/v6/restaurants`
 
 ## Get a restaurant
 
 ```shell
-curl https://example.com/... \
+curl https://search.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d` \
   -i -X GET \
-  -H "Content-Type: application/json" \
-  -H "X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs=" \
-  -d '{ ... }'
+  -H "Content-Type: application/json"
 ```
 
 > The above command returns JSON structured like this:
@@ -607,31 +637,220 @@ curl https://example.com/... \
 }
 ```
 
-### Request Body
+### URL Parameters
 
 Parameter | Description
 --------- | -----------
-example (type) | Example description
+uuid | the restaurant uuid
+
+### HTTP Request
 
 
-### Status Codes:
+`GET https://search.chefsclub.com.br/api/v6/restaurants/<UUID>`
 
-Code | Description
+
+## Highlighted Restaurants
+
+```shell
+curl https://search.chefsclub.com.br/api/v6/restaurants/highlights \
+  -i -X GET \
+  -H "Content-Type: application/json"
+  -d 'area_id=14'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "metadata": {
+    "results_found": 1737,
+    "time_in_milliseconds": 4,
+    "pagination": {
+      "current_page": 1,
+      "total_pages": 70,
+      "has_next_page": true,
+      "has_previous_page": false,
+      "next_page": 2,
+      "previous_page": null
+    }
+  },
+  "restaurants": [
+    {
+      "uuid": "4885-ssdfsdfdsf-fdsf-34534",
+      "name": "Lá no Escondidinho",
+      "main_cuisine": "Brasileira",
+      "address": {
+        "neighbourhood": "Brooklin",
+        "latitude": 32425658679070,
+        "longitude": 4353474574577
+      },
+      "photos": [
+        {
+          "type": "thumb",
+          "url": "https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"
+        }
+      ],
+      "available_offers": [
+        "checkin",
+        "book",
+        "delivery"
+      ],
+      "offers": [
+        {
+          "discount": 20,
+          "benefit": "ganhe uma sobremesa"
+        }
+      ],
+      "average_rating": 4.6
+    }
+  ]
+}
+```
+
+###  URL Parameters
+
+Parameter | Description
 --------- | -----------
-201 | Created
-401 | Access Token Inválido
-402 | Sem Assinatura
+latitude |
+longititude |
+area_id | The area ID to retrieve the highlights
+
+### HTTP Request
+
+`GET https://search.chefsclub.com.br/api/v6/restaurants/highlights`
+
+
+
+## Search by Name (Autocomplete)
+
+```shell
+curl https://search.chefsclub.com.br/api/v6/restaurants/autocomplete \
+  -i -X GET \
+  -H "Content-Type: application/json"
+  -d 'q=Buda'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "metadata": {
+    "results_found": 1737,
+    "time_in_milliseconds": 4,
+    "pagination": {
+      "current_page": 1,
+      "total_pages": 70,
+      "has_next_page": true,
+      "has_previous_page": false,
+      "next_page": 2,
+      "previous_page": null
+    }
+  },
+  "restaurants": [
+    {
+      "uuid": "4885-ssdfsdfdsf-fdsf-34534",
+      "name": "Lá no Escondidinho",
+      "main_cuisine": "Brasileira",
+      "address": {
+        "neighbourhood": "Brooklin",
+        "latitude": 32425658679070,
+        "longitude": 4353474574577
+      },
+      "photos": [
+        {
+          "type": "thumb",
+          "url": "https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"
+        }
+      ],
+      "available_offers": [
+        "checkin",
+        "book",
+        "delivery"
+      ],
+     "offers": [
+        {
+          "discount": 20,
+          "benefit": "ganhe uma sobremesa"
+        }
+      ],
+      "average_rating": 4.6
+    }
+  ]
+}
+```
+
+###  URL Parameters
+
+Parameter | Description
+--------- | -----------
+q | The search term
+
+### HTTP Request
+
+`GET https://search.chefsclub.com.br/api/v6/restaurants/autocomplete`
+
+
+
+
+## Reservation availability
+
+```shell
+curl https://search.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d/availability \
+  -i -X GET \
+  -H "Content-Type: application/json"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{ "availabilities": 
+  [
+    {
+      "maximium_seats": 20,
+      "available_dates": [
+        "2017-01-20",
+        "2017-01-21",
+        "2017-01-22",
+        "2017-01-23",
+        "2017-01-24",
+        "2017-01-25"
+      ],
+      "available_hours":{
+        "2017-01-20": [
+          "12:00",
+          "12:30",
+          "13:00",
+          "13:30",
+          "14:00",
+          "14:30"
+        ]
+      }
+    }
+  ]
+}
+```
+
+###  URL Parameters
+
+Parameter | Description
+--------- | -----------
+seats | Number of seats(people) to reserver
+date | The date to retreave the times
+
+### HTTP Request
+
+`GET https://search.chefsclub.com.br/api/v6/restaurants/<UUID>/availability`
 
 # Filters
 
 ## Retrieve filters
 
-`GET https://example.com/api/v6/filters`
+`GET https://search.chefsclub.com.br/api/v6/filters`
 
 ## Get filters
 
 ```shell
-curl https://example.com/... \
+curl https://search.chefsclub.com.br/api/v6/filters \
   -i -X GET \
   -H "Content-Type: application/json" \
   -H "X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs=" \
@@ -883,20 +1102,9 @@ curl https://example.com/... \
 }
 ```
 
-### Request Body
-
-Parameter | Description
---------- | -----------
-example (type) | Example description
 
 
-### Status Codes:
 
-Code | Description
---------- | -----------
-201 | Created
-401 | Access Token Inválido
-402 | Sem Assinatura
 
 # Examples
 
