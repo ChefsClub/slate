@@ -502,7 +502,7 @@ curl https://search.chefsclub.com.br/api/v6/restaurants \
       },
       "photos": [
         {
-          "type": "thumb",
+          "type": "profile",
           "url": "https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"
         }
       ],
@@ -529,7 +529,20 @@ Parameter | Description
 --------- | -----------
 latitude |
 longititude |
-area_id | The area ID to retrieve the highlights
+area | The area slug to retrieve the highlights
+neighbourhood_ids | Filtra por bairro. É possível filtrar por múltiplos bairros.
+cuisine_ids |  Filtra por categoria. É possível filtrar por múltiplas categorias
+price_range |  Filtra por faixa de preço Possible values:  2 , 3 , 4 , 5
+sources | Filtra por tipo de disponibilidade. É possível especificar múltiplos sources.
+seats | Filtra por disponibilidade de número de pessoas
+date |  Filtra por data hora, formato ISO8601(yyyy-mm-dd)
+time | Filtra por hora, Possible values:  search_next , lunch , dinner , all , HH:MM.
+datetime | Filtra por data e hora
+discount | Filtra por percentual de desconto. Example: 30.
+page | Número da página de resultados Default: 1.
+per_page | Número de resultados (restaurantes) por página
+order | Define a ordenação dos resultados A ordenação padrão muda para name (relevância do nome pesquisado) se a busca for por nome de restaurante. E se a busca for geolocalizada a ordenação padrão muda para nearest (mais próximos). Default: ranking. Possible values:  name , nearest , ranking , recommended .
+
 
 ### HTTP Request
 
@@ -617,7 +630,7 @@ curl https://search.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d` \
   },
   "photos": [
     {
-      "type": "thumb",
+      "type": "profile",
       "url": "https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"
     },
     {
@@ -632,7 +645,7 @@ curl https://search.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d` \
   "main_cuisine ": "Brasileira",
   "cuisines": [
     "brasileira",
-    "contemporÃ¢nea"
+    "contemporanea"
   ]
 }
 ```
@@ -655,7 +668,7 @@ uuid | the restaurant uuid
 curl https://search.chefsclub.com.br/api/v6/restaurants/highlights \
   -i -X GET \
   -H "Content-Type: application/json"
-  -d 'area_id=14'
+  -d 'area=sao-paulo'
 ```
 
 > The above command returns JSON structured like this:
@@ -663,46 +676,54 @@ curl https://search.chefsclub.com.br/api/v6/restaurants/highlights \
 ```json
 {
   "metadata": {
-    "results_found": 1737,
+    "results_found": 3,
     "time_in_milliseconds": 4,
     "pagination": {
       "current_page": 1,
       "total_pages": 70,
-      "has_next_page": true,
-      "has_previous_page": false,
+      "per_page": 2,
       "next_page": 2,
       "previous_page": null
     }
   },
-  "restaurants": [
-    {
-      "uuid": "4885-ssdfsdfdsf-fdsf-34534",
-      "name": "Lá no Escondidinho",
-      "main_cuisine": "Brasileira",
-      "address": {
-        "neighbourhood": "Brooklin",
-        "latitude": 32425658679070,
-        "longitude": 4353474574577
-      },
-      "photos": [
-        {
-          "type": "thumb",
-          "url": "https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"
-        }
-      ],
-      "available_offers": [
-        "checkin",
-        "book",
-        "delivery"
-      ],
-      "offers": [
-        {
-          "discount": 20,
-          "benefit": "ganhe uma sobremesa"
-        }
-      ],
-      "average_rating": 4.6
-    }
+  "highlights" : [
+    "type": "restaurant_grid",
+    "title": "Disponiveis por perto",
+    "call_to_action": "Ver todos proximos",
+    "selected_filters": {
+        "seats":1,
+        "order":"nearest"
+    },
+    "restaurants": [
+      {
+        "uuid": "4885-ssdfsdfdsf-fdsf-34534",
+        "name": "Lá no Escondidinho",
+        "main_cuisine": "Brasileira",
+        "address": {
+          "neighbourhood": "Brooklin",
+          "latitude": 32425658679070,
+          "longitude": 4353474574577
+        },
+        "photos": [
+          {
+            "type": "profile",
+            "url": "https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"
+          }
+        ],
+        "available_offers": [
+          "checkin",
+          "book",
+          "delivery"
+        ],
+        "offers": [
+          {
+            "discount": 20,
+            "benefit": "ganhe uma sobremesa"
+          }
+        ],
+        "average_rating": 4.6
+      }
+    ]
   ]
 }
 ```
@@ -713,7 +734,7 @@ Parameter | Description
 --------- | -----------
 latitude |
 longititude |
-area_id | The area ID to retrieve the highlights
+area | The area slug to retrieve the highlights
 
 ### HTTP Request
 
@@ -758,7 +779,7 @@ curl https://search.chefsclub.com.br/api/v6/restaurants/autocomplete \
       },
       "photos": [
         {
-          "type": "thumb",
+          "type": "profile",
           "url": "https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"
         }
       ],
@@ -803,7 +824,7 @@ curl https://search.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d/avai
 > The above command returns JSON structured like this:
 
 ```json
-{ "availabilities": 
+{ "availabilities":
   [
     {
       "maximium_seats": 20,
@@ -845,7 +866,15 @@ date | The date to retreave the times
 
 ## Retrieve filters
 
+### HTTP Request
+
 `GET https://search.chefsclub.com.br/api/v6/filters`
+
+###  URL Parameters
+
+Parameter | Description
+--------- | -----------
+area | The area slug to retrieve the filters for that area
 
 ## Get filters
 
@@ -853,8 +882,8 @@ date | The date to retreave the times
 curl https://search.chefsclub.com.br/api/v6/filters \
   -i -X GET \
   -H "Content-Type: application/json" \
-  -H "X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs=" \
-  -d '{ ... }'
+  -d '' \
+    -d '' \
 ```
 
 > The above command returns JSON structured like this:
@@ -865,51 +894,51 @@ curl https://search.chefsclub.com.br/api/v6/filters \
     {
       "type": "city",
       "load_more": false,
+      "results": []
+    },
+    {
+      "type": "order",
+      "load_more": false,
       "results": [
         {
-          "id": 27,
+          "id": "recommended",
           "slug": "nome-do-slug",
-          "name": "Belo Horizonte"
+          "name": "Recomendados"
         },
         {
-          "id": 11,
+          "id": "nearest",
           "slug": "nome-do-slug",
-          "name": "Brasilia"
+          "name": "Mais proximos"
         },
         {
-          "id": 26,
+          "id": "newest",
           "slug": "nome-do-slug",
-          "name": "Campinas e regiao"
+          "name": "Novidades"
         },
         {
-          "id": 22,
+          "id": "ranking",
           "slug": "nome-do-slug",
-          "name": "Curitiba"
-        },
-        {
-          "id": 30,
-          "slug": "nome-do-slug",
-          "name": "Porto Alegre"
-        },
-        {
-          "id": 21,
-          "slug": "nome-do-slug",
-          "name": "Rio de Janeiro"
-        },
-        {
-          "id": 1,
-          "slug": "nome-do-slug",
-          "name": "Sao Paulo"
+          "name": "Destaques"
         }
       ]
     },
     {
-      "type": "people",
+      "type": "available_offer"
       "load_more": false,
       "results": []
     },
     {
-      "type": "availability",
+      "type": "seats",
+      "load_more": false,
+      "results": []
+    },
+    {
+      "type": "date",
+      "load_more": false,
+      "results": []
+    },
+    {
+      "type": "hour",
       "load_more": false,
       "results": []
     },
@@ -976,7 +1005,7 @@ curl https://search.chefsclub.com.br/api/v6/filters \
         {
           "id": 4,
           "slug": "nome-do-slug",
-          "name": "Comida riÂ¡pida"
+          "name": "Comida rápida"
         },
         {
           "id": 6,
@@ -1006,28 +1035,28 @@ curl https://search.chefsclub.com.br/api/v6/filters \
       ]
     },
     {
-      "type": "ticket",
+      "type": "price_range",
       "load_more": false,
       "results": [
         {
           "id": 1,
           "slug": "nome-do-slug",
-          "name": "AtiÂ© R$25 por pessoa"
+          "name": "Até R$25 por pessoa"
         },
         {
           "id": 2,
           "slug": "nome-do-slug",
-          "name": "De R$25 atiÂ© R$50 por pessoa"
+          "name": "De R$25 até R$50 por pessoa"
         },
         {
           "id": 3,
           "slug": "nome-do-slug",
-          "name": "De R$50 atiÂ© R$75 por pessoa"
+          "name": "De R$50 até R$75 por pessoa"
         },
         {
           "id": 4,
           "slug": "nome-do-slug",
-          "name": "De R$75 atiÂ© R$100 por pessoa"
+          "name": "De R$75 até R$100 por pessoa"
         },
         {
           "id": 5,
@@ -1071,40 +1100,26 @@ curl https://search.chefsclub.com.br/api/v6/filters \
           "name": "Vila Olimpia"
         }
       ]
-    },
-    {
-      "type": "order",
-      "load_more": false,
-      "results": [
-        {
-          "id": "recommended",
-          "slug": "nome-do-slug",
-          "name": "Recomendados"
-        },
-        {
-          "id": "nearest",
-          "slug": "nome-do-slug",
-          "name": "Mais proximos"
-        },
-        {
-          "id": "newest",
-          "slug": "nome-do-slug",
-          "name": "Novidades"
-        },
-        {
-          "id": "ranking",
-          "slug": "nome-do-slug",
-          "name": "Destaques"
-        }
-      ]
     }
   ]
 }
 ```
 
+###  URL Parameters
 
+Parameter | Description
+--------- | -----------
+neighbourhood_ids | Filtra por bairro. É possível filtrar por múltiplos bairros separados por virgula
+cuisine_ids |  Filtra por categoria. É possível filtrar por múltiplas categorias separados por virgula
+price_range |  Filtra por faixa de preço Possible values:  2 , 3 , 4 , 5
+sources | Filtra por tipo de disponibilidade. É possível especificar múltiplos sources.
+seats | Filtra por disponibilidade de número de pessoas
+date |  Filtra por data hora, formato ISO8601(yyyy-mm-dd)
+time | Filtra por hora, Possible values:  search_next , lunch , dinner , all , HH:MM.
 
+### HTTP Request
 
+`GET https://search.chefsclub.com.br/api/v6/filters/<FILTER_TYPE>`
 
 # Examples
 
