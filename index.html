@@ -885,7 +885,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"thumb"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"profile"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
@@ -920,8 +920,56 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td></td>
 </tr>
 <tr>
-<td>area_id</td>
-<td>The area ID to retrieve the highlights</td>
+<td>area</td>
+<td>The area slug to retrieve the highlights</td>
+</tr>
+<tr>
+<td>neighbourhood_ids</td>
+<td>Filtra por bairro. É possível filtrar por múltiplos bairros.</td>
+</tr>
+<tr>
+<td>cuisine_ids</td>
+<td>Filtra por categoria. É possível filtrar por múltiplas categorias</td>
+</tr>
+<tr>
+<td>price_range</td>
+<td>Filtra por faixa de preço Possible values:  2 , 3 , 4 , 5</td>
+</tr>
+<tr>
+<td>sources</td>
+<td>Filtra por tipo de disponibilidade. É possível especificar múltiplos sources.</td>
+</tr>
+<tr>
+<td>seats</td>
+<td>Filtra por disponibilidade de número de pessoas</td>
+</tr>
+<tr>
+<td>date</td>
+<td>Filtra por data hora, formato ISO8601(yyyy-mm-dd)</td>
+</tr>
+<tr>
+<td>time</td>
+<td>Filtra por hora, Possible values:  search_next , lunch , dinner , all , HH:MM.</td>
+</tr>
+<tr>
+<td>datetime</td>
+<td>Filtra por data e hora</td>
+</tr>
+<tr>
+<td>discount</td>
+<td>Filtra por percentual de desconto. Example: 30.</td>
+</tr>
+<tr>
+<td>page</td>
+<td>Número da página de resultados Default: 1.</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td>Número de resultados (restaurantes) por página</td>
+</tr>
+<tr>
+<td>order</td>
+<td>Define a ordenação dos resultados A ordenação padrão muda para name (relevância do nome pesquisado) se a busca for por nome de restaurante. E se a busca for geolocalizada a ordenação padrão muda para nearest (mais próximos). Default: ranking. Possible values:  name , nearest , ranking , recommended .</td>
 </tr>
 </tbody></table>
 <h3 id='http-request-9'>HTTP Request</h3>
@@ -1004,7 +1052,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"thumb"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"profile"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -1019,7 +1067,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
   </span><span class="s2">"main_cuisine "</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brasileira"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cuisines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="s2">"brasileira"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contemporÃ¢nea"</span><span class="w">
+    </span><span class="s2">"contemporanea"</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='url-parameters-4'>URL Parameters</h3>
@@ -1039,53 +1087,61 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <h2 id='highlighted-restaurants'>Highlighted Restaurants</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants/highlights <span class="se">\</span>
   -i -X GET <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span>
-  -d <span class="s1">'area_id=14'</span>
+  -d <span class="s1">'area=sao-paulo'</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"results_found"</span><span class="p">:</span><span class="w"> </span><span class="mi">1737</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"results_found"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
     </span><span class="s2">"time_in_milliseconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
     </span><span class="s2">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"has_next_page"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"has_previous_page"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="s2">"next_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="s2">"previous_page"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"restaurants"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4885-ssdfsdfdsf-fdsf-34534"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lá no Escondidinho"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"main_cuisine"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brasileira"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"neighbourhood"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brooklin"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mi">32425658679070</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mi">4353474574577</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"thumb"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"available_offers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"checkin"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"book"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"delivery"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"offers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"benefit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ganhe uma sobremesa"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"average_rating"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.6</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+  </span><span class="s2">"highlights"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"restaurant_grid"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Disponiveis por perto"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"call_to_action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ver todos proximos"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"selected_filters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"seats"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order"</span><span class="p">:</span><span class="s2">"nearest"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"restaurants"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4885-ssdfsdfdsf-fdsf-34534"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lá no Escondidinho"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"main_cuisine"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brasileira"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"neighbourhood"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brooklin"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mi">32425658679070</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mi">4353474574577</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"profile"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"available_offers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"checkin"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"book"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"delivery"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"offers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"benefit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ganhe uma sobremesa"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"average_rating"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.6</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='url-parameters-5'>URL Parameters</h3>
@@ -1104,8 +1160,8 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td></td>
 </tr>
 <tr>
-<td>area_id</td>
-<td>The area ID to retrieve the highlights</td>
+<td>area</td>
+<td>The area slug to retrieve the highlights</td>
 </tr>
 </tbody></table>
 <h3 id='http-request-11'>HTTP Request</h3>
@@ -1143,7 +1199,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"thumb"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"profile"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
@@ -1183,7 +1239,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"availabilities"</span><span class="p">:</span><span class="w"> 
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"availabilities"</span><span class="p">:</span><span class="w">
   </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"maximium_seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
@@ -1226,13 +1282,25 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 </tbody></table>
 <h3 id='http-request-13'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/restaurants/&lt;UUID&gt;/availability</code></p>
-<h1 id='filters'>Filters</h1><h2 id='retrieve-filters'>Retrieve filters</h2>
+<h1 id='filters'>Filters</h1><h2 id='retrieve-filters'>Retrieve filters</h2><h3 id='http-request-14'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/filters</code></p>
+<h3 id='url-parameters-8'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>area</td>
+<td>The area slug to retrieve the filters for that area</td>
+</tr>
+</tbody></table>
 <h2 id='get-filters'>Get filters</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/filters <span class="se">\</span>
   -i -X GET <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -H <span class="s2">"X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="</span> <span class="se">\</span>
-  -d <span class="s1">'{ ... }'</span>
+  -d <span class="s1">''</span> <span class="se">\</span>
+    -d <span class="s1">''</span> <span class="se">\</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1242,51 +1310,51 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"city"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"load_more"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"load_more"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recommended"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nome-do-slug"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Belo Horizonte"</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recomendados"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nearest"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nome-do-slug"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brasilia"</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mais proximos"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"newest"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nome-do-slug"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campinas e regiao"</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Novidades"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ranking"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nome-do-slug"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Curitiba"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nome-do-slug"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Porto Alegre"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nome-do-slug"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rio de Janeiro"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nome-do-slug"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sao Paulo"</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Destaques"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"people"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available_offer"</span><span class="w">
       </span><span class="s2">"load_more"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"availability"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seats"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"load_more"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"load_more"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hour"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"load_more"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -1353,7 +1421,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
         </span><span class="p">{</span><span class="w">
           </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
           </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nome-do-slug"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Comida riÂ¡pida"</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Comida rápida"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
@@ -1383,28 +1451,28 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
       </span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ticket"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"price_range"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"load_more"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
           </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nome-do-slug"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AtiÂ© R$25 por pessoa"</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Até R$25 por pessoa"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
           </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nome-do-slug"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"De R$25 atiÂ© R$50 por pessoa"</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"De R$25 até R$50 por pessoa"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
           </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nome-do-slug"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"De R$50 atiÂ© R$75 por pessoa"</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"De R$50 até R$75 por pessoa"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
           </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nome-do-slug"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"De R$75 atiÂ© R$100 por pessoa"</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"De R$75 até R$100 por pessoa"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
@@ -1448,36 +1516,48 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
           </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vila Olimpia"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"load_more"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recommended"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nome-do-slug"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recomendados"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nearest"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nome-do-slug"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mais proximos"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"newest"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nome-do-slug"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Novidades"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ranking"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nome-do-slug"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Destaques"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='examples'>Examples</h1><h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+</span></code></pre><h3 id='url-parameters-9'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>neighbourhood_ids</td>
+<td>Filtra por bairro. É possível filtrar por múltiplos bairros separados por virgula</td>
+</tr>
+<tr>
+<td>cuisine_ids</td>
+<td>Filtra por categoria. É possível filtrar por múltiplas categorias separados por virgula</td>
+</tr>
+<tr>
+<td>price_range</td>
+<td>Filtra por faixa de preço Possible values:  2 , 3 , 4 , 5</td>
+</tr>
+<tr>
+<td>sources</td>
+<td>Filtra por tipo de disponibilidade. É possível especificar múltiplos sources.</td>
+</tr>
+<tr>
+<td>seats</td>
+<td>Filtra por disponibilidade de número de pessoas</td>
+</tr>
+<tr>
+<td>date</td>
+<td>Filtra por data hora, formato ISO8601(yyyy-mm-dd)</td>
+</tr>
+<tr>
+<td>time</td>
+<td>Filtra por hora, Possible values:  search_next , lunch , dinner , all , HH:MM.</td>
+</tr>
+</tbody></table>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>GET https://search.chefsclub.com.br/api/v6/filters/&lt;FILTER_TYPE&gt;</code></p>
+<h1 id='examples'>Examples</h1><h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
 <span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -1502,9 +1582,9 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-8'>URL Parameters</h3>
+<h3 id='url-parameters-10'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
