@@ -866,27 +866,15 @@ date | The date to retreave the times
 
 ## Retrieve filters
 
-### HTTP Request
-
-`GET https://search.chefsclub.com.br/api/v6/filters`
-
-###  URL Parameters
-
-Parameter | Description
---------- | -----------
-area | The area slug to retrieve the filters for that area
-
-## Get filters
-
 ```shell
 curl https://search.chefsclub.com.br/api/v6/filters \
   -i -X GET \
   -H "Content-Type: application/json" \
-  -d '' \
-    -d '' \
+  -d 'area=sao-paulo'
 ```
 
 > The above command returns JSON structured like this:
+
 
 ```json
 {
@@ -1105,12 +1093,77 @@ curl https://search.chefsclub.com.br/api/v6/filters \
 }
 ```
 
+### HTTP Request
+
+`GET https://search.chefsclub.com.br/api/v6/filters`
+
+###  URL Parameters
+
+Parameter | Description
+--------- | -----------
+area | The area slug to retrieve the filters for that area
+
+## Get filters
+
+```shell
+curl https://search.chefsclub.com.br/api/v6/filters/cuisine  \
+  -i -X GET \
+  -H "Content-Type: application/json" \
+  -d 'area=sao-paulo' \
+  -d 'neighbourhood_ids=1,2' \
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "filters": [
+    {
+      "type": "cuisine",
+      "load_more": true,
+      "results": [
+        {
+          "id": 2,
+          "slug": "nome-do-slug",
+          "name": "Brasileira"
+        },
+        {
+          "id": 8,
+          "slug": "nome-do-slug",
+          "name": "Contemporienea"
+        },
+        {
+          "id": 5,
+          "slug": "nome-do-slug",
+          "name": "Italiana"
+        },
+        {
+          "id": 13,
+          "slug": "nome-do-slug",
+          "name": "Japonesa"
+        },
+        {
+          "id": 15,
+          "slug": "nome-do-slug",
+          "name": "Pizza"
+        },
+        {
+          "id": 14,
+          "slug": "nome-do-slug",
+          "name": "Variada"
+        }
+      ]
+    }
+  ]
+}
+```
+
 ###  URL Parameters
 
 Parameter | Description
 --------- | -----------
 neighbourhood_ids | Filtra por bairro. É possível filtrar por múltiplos bairros separados por virgula
-cuisine_ids |  Filtra por categoria. É possível filtrar por múltiplas categorias separados por virgula
+cuisine_ids |  Filtra por categoria. É possível iltrar por múltiplas categorias separados por virgula
 price_range |  Filtra por faixa de preço Possible values:  2 , 3 , 4 , 5
 sources | Filtra por tipo de disponibilidade. É possível especificar múltiplos sources.
 seats | Filtra por disponibilidade de número de pessoas
