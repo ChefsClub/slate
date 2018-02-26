@@ -533,7 +533,7 @@ area | The area slug to retrieve the highlights
 neighbourhood_ids | Filtra por bairro. É possível filtrar por múltiplos bairros.
 cuisine_ids |  Filtra por categoria. É possível filtrar por múltiplas categorias
 price_range |  Filtra por faixa de preço Possible values:  2 , 3 , 4 , 5
-sources | Filtra por tipo de disponibilidade. É possível especificar múltiplos sources.
+offers | Filtra por tipo de disponibilidade. É possível especificar múltiplos sources. Possible values: checkin, booking, delivery
 seats | Filtra por disponibilidade de número de pessoas
 date |  Filtra por data hora, formato ISO8601(yyyy-mm-dd)
 time | Filtra por hora, Possible values:  search_next , lunch , dinner , all , HH:MM.
@@ -1165,7 +1165,7 @@ Parameter | Description
 neighbourhood_ids | Filtra por bairro. É possível filtrar por múltiplos bairros separados por virgula
 cuisine_ids |  Filtra por categoria. É possível iltrar por múltiplas categorias separados por virgula
 price_range |  Filtra por faixa de preço Possible values:  2 , 3 , 4 , 5
-sources | Filtra por tipo de disponibilidade. É possível especificar múltiplos sources.
+offers | Filtra por tipo de disponibilidade. É possível especificar múltiplos sources. Possible values: checkin, booking, delivery.
 seats | Filtra por disponibilidade de número de pessoas
 date |  Filtra por data hora, formato ISO8601(yyyy-mm-dd)
 time | Filtra por hora, Possible values:  search_next , lunch , dinner , all , HH:MM.
