@@ -294,16 +294,81 @@ This endpoint updates the client password if the recovery token is correct and m
 
 `PUT https://account.chefsclub.com.br/api/v3/recover_passwords`
 
-# Reservation
+# Usage
+
+## List all bookings and checkins
+
+```shell
+curl https://account.chefsclub.com.br/api/v3/usages \
+  -i -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "metadata": {
+    "results_found": 1737,
+    "time_in_milliseconds": null,
+    "pagination": {
+      "current_page": 1,
+      "total_pages": 70,
+      "has_next_page": true,
+      "has_previous_page": false,
+      "next_page": 2,
+      "previous_page": null
+    }
+  },
+  "reservations" : [
+    {
+      "id": 10,
+      "starts_at": "2018-01-18T16:30:00-02:00",
+      "expires_at": "2018-01-18T18:30:00-02:00",
+      "canceled_at": null,
+      "savings": null,
+      "rating": null,
+      "type": "booking"
+      "seats": 6,
+      "restaurant" : {
+        "uuid": "c55045f0-6e8b-471e-9556-c45af9d2861a",
+        "name": "Pobre Juan",
+        "main_cuisine": "Francesa",
+        "photos" : [
+          {
+            type: 'profile',
+            "photo": "http://example.org/photo.jpg",
+            "cover_photo": "http://example.org/photo.jpg",
+          }
+        ],
+        "address" {
+          "city": "Recife",
+          "neighborhood": "Centro",
+          "latitude": "-23.45960",
+          "longitude": "45.298743"
+        },
+        "active": true,
+        "average_rating" : 4.7
+      },
+      "offer": {
+        "discount": "30"
+        "restriction": "Não vale menu executivo"
+        "period": "10:00 - 11:00"
+      }
+    }
+  ]
+}
+```
 
 ## Create a booking or checkin
 
 ```shell
-curl https://account.chefsclub.com.br/api/v3/reservations \
+curl https://account.chefsclub.com.br/api/v3/usages \
   -i -X POST \
   -H "Content-Type: application/json" \
   -H "X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs=" \
-  -d '{ "checkin": { "restaurant_id" : 3004 } }'
+  -d '{ "reservation": { "restaurant_uuid" : "c55045f0-6e8b-471e-9556-c45af9d2861a" } }'
 ```
 
 > The above command returns JSON structured like this:
@@ -314,34 +379,33 @@ curl https://account.chefsclub.com.br/api/v3/reservations \
     "id": 10,
     "starts_at": "2018-01-18T16:30:00-02:00",
     "expires_at": "2018-01-18T18:30:00-02:00",
-    "created_at": "",
     "canceled_at": null,
     "savings": null,
     "rating": null,
     "type": "booking"
     "seats": 6,
-    "client": {
-      "first_name": "James"
-      "last_name": "Taylor"
-      "cpf": "99999999999"
-    }
     "restaurant" : {
-      "id": 10,
+      "uuid": "c55045f0-6e8b-471e-9556-c45af9d2861a",
       "name": "Pobre Juan",
-      "cuisines": ["Francesa"],
-      "photo": "http://example.org/photo.jpg",
-      "cover_photo": "http://example.org/photo.jpg",
-      "address": "Rua da aurora",
-      "city": "Recife",
-      "state": "PE",
-      "neighborhood": "Centro",
+      "main_cuisine": "Francesa",
+      "photos" : [
+        {
+          type: 'profile',
+          "photo": "http://example.org/photo.jpg",
+          "cover_photo": "http://example.org/photo.jpg",
+        }
+      ],
+      "address" {
+        "city": "Recife",
+        "neighborhood": "Centro",
+        "latitude": "-23.45960",
+        "longitude": "45.298743"
+      },
       "active": true,
-      "latitude": "-23.45960",
-      "longitude": "45.298743",
-    }
+      "average_rating" : 4.7
+    },
     "offer": {
       "discount": "30"
-      "description": "Desconto na conta toda"
       "restriction": "Não vale menu executivo"
       "period": "10:00 - 11:00"
     }
@@ -355,13 +419,12 @@ Create a checkin or booking a restaurant.
 ### Request Body
 Parameter | Description
 --------- | -----------
-restaurant_id | The restaurante for the reservation or checkin
-reserve_at (datetime) | optional
+restaurant_uuid | The restaurant UUID for the reservation or checkin
+reserve_at (datetime) | optional for checkin, required for booking
+seats (interger) |  optional for checkin, required for booking
 savings (float) | optional
 latitude (float) |optional
 longitude (float) |optional
-seats (interger) | optional
-
 
 ### Status Codes:
 Code | Description
@@ -370,13 +433,18 @@ Code | Description
 400 | Restaurante não existente
 401 | Access Token Inválido
 402 | Sem Assinatura
+420 | Já tem Reserva/Checkin para o mesmo periodo
 404/410 | Reserva não mais disponível
+
+### HTTP Request
+
+`POST https://account.chefsclub.com.br/api/v3/usages`
 
 
 ## Cancel a booking
 
 ```shell
-curl https://account.chefsclub.com.br/api/v3/reservations/<ID> \
+curl https://account.chefsclub.com.br/api/v3/usages/<ID> \
   -i -X DELETE \
   -H "Content-Type: application/json" \
   -H "X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs=" \
@@ -400,6 +468,10 @@ The endpoint cancels a booking reservation
 Parameter | Description
 --------- | -----------
 ID | The ID of the  booking reservation to cancel
+
+### HTTP Request
+
+`DELETE https://account.chefsclub.com.br/api/v3/usages/<ID>`
 
 
 ---
@@ -503,9 +575,10 @@ curl https://search.chefsclub.com.br/api/v6/restaurants \
       "photos": [
         {
           "type": "profile",
-          "url": "https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"
+          "url": "https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/3509458878559132905_o.jpg",
+          "thumb": "https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/3509458878559132905_o.jpg"
         }
-      ],
+      ],  
       "available_offers": [
         "checkin",
         "book",
