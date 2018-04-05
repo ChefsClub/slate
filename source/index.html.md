@@ -433,7 +433,8 @@ Code | Description
 400 | Restaurante não existente
 401 | Access Token Inválido
 402 | Sem Assinatura
-420 | Já tem Reserva/Checkin para o mesmo periodo
+409 | Já tem Reserva para mesma data
+420 | Já tem Checkin para o mesmo periodo
 404/410 | Reserva não mais disponível
 
 ### HTTP Request
