@@ -263,8 +263,11 @@
               </ul>
           </li>
           <li>
-            <a href="#reservation" class="toc-h1 toc-link" data-title="Reservation">Reservation</a>
+            <a href="#usage" class="toc-h1 toc-link" data-title="Usage">Usage</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#list-all-bookings-and-checkins" class="toc-h2 toc-link" data-title="List all bookings and checkins">List all bookings and checkins</a>
+                  </li>
                   <li>
                     <a href="#create-a-booking-or-checkin" class="toc-h2 toc-link" data-title="Create a booking or checkin">Create a booking or checkin</a>
                   </li>
@@ -658,11 +661,70 @@
 <p>This endpoint updates the client password if the recovery token is correct and makes a new session to the user</p>
 <h3 id='http-request-7'>HTTP Request</h3>
 <p><code>PUT https://account.chefsclub.com.br/api/v3/recover_passwords</code></p>
-<h1 id='reservation'>Reservation</h1><h2 id='create-a-booking-or-checkin'>Create a booking or checkin</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/reservations <span class="se">\</span>
+<h1 id='usage'>Usage</h1><h2 id='list-all-bookings-and-checkins'>List all bookings and checkins</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/usages <span class="se">\</span>
+  -i -X GET <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"results_found"</span><span class="p">:</span><span class="w"> </span><span class="mi">1737</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time_in_milliseconds"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"has_next_page"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"has_previous_page"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"next_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"previous_page"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"reservations"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-18T16:30:00-02:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-18T18:30:00-02:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"savings"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"rating"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"booking"</span><span class="w">
+      </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"restaurant"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c55045f0-6e8b-471e-9556-c45af9d2861a"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pobre Juan"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"main_cuisine"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Francesa"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"photos"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="err">type</span><span class="p">:</span><span class="w"> </span><span class="err">'profile'</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org/photo.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cover_photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org/photo.jpg"</span><span class="p">,</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"address"</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recife"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"neighborhood"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Centro"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-23.45960"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45.298743"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"average_rating"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">4.7</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"offer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
+        </span><span class="s2">"restriction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Não vale menu executivo"</span><span class="w">
+        </span><span class="s2">"period"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00 - 11:00"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='create-a-booking-or-checkin'>Create a booking or checkin</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/usages <span class="se">\</span>
   -i -X POST <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -H <span class="s2">"X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="</span> <span class="se">\</span>
-  -d <span class="s1">'{ "checkin": { "restaurant_id" : 3004 } }'</span>
+  -d <span class="s1">'{ "reservation": { "restaurant_uuid" : "c55045f0-6e8b-471e-9556-c45af9d2861a" } }'</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -672,34 +734,33 @@
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="s2">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-18T16:30:00-02:00"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-18T18:30:00-02:00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"savings"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"rating"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"booking"</span><span class="w">
     </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"client"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"James"</span><span class="w">
-      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taylor"</span><span class="w">
-      </span><span class="s2">"cpf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99999999999"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
     </span><span class="s2">"restaurant"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c55045f0-6e8b-471e-9556-c45af9d2861a"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pobre Juan"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"cuisines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Francesa"</span><span class="p">],</span><span class="w">
-      </span><span class="s2">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org/photo.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"cover_photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org/photo.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rua da aurora"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recife"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PE"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"neighborhood"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Centro"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"main_cuisine"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Francesa"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"photos"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="err">type</span><span class="p">:</span><span class="w"> </span><span class="err">'profile'</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org/photo.jpg"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"cover_photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org/photo.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"address"</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recife"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"neighborhood"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Centro"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-23.45960"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45.298743"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
       </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-23.45960"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45.298743"</span><span class="p">,</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+      </span><span class="s2">"average_rating"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">4.7</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="s2">"offer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Desconto na conta toda"</span><span class="w">
       </span><span class="s2">"restriction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Não vale menu executivo"</span><span class="w">
       </span><span class="s2">"period"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00 - 11:00"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -715,12 +776,16 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>restaurant_id</td>
-<td>The restaurante for the reservation or checkin</td>
+<td>restaurant_uuid</td>
+<td>The restaurant UUID for the reservation or checkin</td>
 </tr>
 <tr>
 <td>reserve_at (datetime)</td>
-<td>optional</td>
+<td>optional for checkin, required for booking</td>
+</tr>
+<tr>
+<td>seats (interger)</td>
+<td>optional for checkin, required for booking</td>
 </tr>
 <tr>
 <td>savings (float)</td>
@@ -732,10 +797,6 @@
 </tr>
 <tr>
 <td>longitude (float)</td>
-<td>optional</td>
-</tr>
-<tr>
-<td>seats (interger)</td>
 <td>optional</td>
 </tr>
 </tbody></table>
@@ -763,11 +824,17 @@
 <td>Sem Assinatura</td>
 </tr>
 <tr>
+<td>420</td>
+<td>Já tem Reserva/Checkin para o mesmo periodo</td>
+</tr>
+<tr>
 <td>404/410</td>
 <td>Reserva não mais disponível</td>
 </tr>
 </tbody></table>
-<h2 id='cancel-a-booking'>Cancel a booking</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/reservations/&lt;ID&gt; <span class="se">\</span>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>POST https://account.chefsclub.com.br/api/v3/usages</code></p>
+<h2 id='cancel-a-booking'>Cancel a booking</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/usages/&lt;ID&gt; <span class="se">\</span>
   -i -X DELETE <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -H <span class="s2">"X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="</span> <span class="se">\</span>
@@ -795,6 +862,8 @@
 <td>The ID of the  booking reservation to cancel</td>
 </tr>
 </tbody></table>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>DELETE https://account.chefsclub.com.br/api/v3/usages/&lt;ID&gt;</code></p>
 
 <hr>
 <h1 id='api-de-busca-de-restaurantes'>API de Busca de Restaurantes</h1>
@@ -849,7 +918,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/areas</code></p>
 <h1 id='restaurants'>Restaurants</h1><h2 id='retrieve-restaurants'>Retrieve restaurants</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants <span class="se">\</span>
   -i -X GET <span class="se">\</span>
@@ -886,9 +955,10 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
       </span><span class="s2">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"profile"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/width704_13443154_1087046398029389_3509458878559132905_o.jpg"</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/3509458878559132905_o.jpg"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/3509458878559132905_o.jpg"</span><span class="w">
         </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
+      </span><span class="p">],</span><span class="w">  
       </span><span class="s2">"available_offers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="s2">"checkin"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"book"</span><span class="p">,</span><span class="w">
@@ -972,7 +1042,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>Define a ordenação dos resultados A ordenação padrão muda para name (relevância do nome pesquisado) se a busca for por nome de restaurante. E se a busca for geolocalizada a ordenação padrão muda para nearest (mais próximos). Default: ranking. Possible values:  name , nearest , ranking , recommended .</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/restaurants</code></p>
 <h2 id='get-a-restaurant'>Get a restaurant</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d<span class="sb">`</span> <span class="se">\</span>
   -i -X GET <span class="se">\</span>
@@ -1082,7 +1152,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>the restaurant uuid</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/restaurants/&lt;UUID&gt;</code></p>
 <h2 id='highlighted-restaurants'>Highlighted Restaurants</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants/highlights <span class="se">\</span>
   -i -X GET <span class="se">\</span>
@@ -1164,7 +1234,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>The area slug to retrieve the highlights</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/restaurants/highlights</code></p>
 <h2 id='search-by-name-autocomplete'>Search by Name (Autocomplete)</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants/autocomplete <span class="se">\</span>
   -i -X GET <span class="se">\</span>
@@ -1230,7 +1300,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>The search term</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/restaurants/autocomplete</code></p>
 <h2 id='reservation-availability'>Reservation availability</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d/availability <span class="se">\</span>
   -i -X GET <span class="se">\</span>
@@ -1280,7 +1350,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>The date to retreave the times</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/restaurants/&lt;UUID&gt;/availability</code></p>
 <h1 id='filters'>Filters</h1><h2 id='retrieve-filters'>Retrieve filters</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/filters <span class="se">\</span>
   -i -X GET <span class="se">\</span>
@@ -1504,7 +1574,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-14'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-16'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/filters</code></p>
 <h3 id='url-parameters-8'>URL Parameters</h3>
 <table><thead>
@@ -1603,7 +1673,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>Filtra por hora, Possible values:  search_next , lunch , dinner , all , HH:MM.</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/filters/&lt;FILTER_TYPE&gt;</code></p>
 <h1 id='examples'>Examples</h1><h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
@@ -1630,7 +1700,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
 <h3 id='url-parameters-10'>URL Parameters</h3>
 <table><thead>
