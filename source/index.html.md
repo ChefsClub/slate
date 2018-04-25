@@ -260,7 +260,7 @@ This endpoint sends en email to the client with a password recovery token
 
 ```shell
 curl https://account.chefsclub.com.br/api/v3/recover_passwords \
-  -i -X POST \
+  -i -X PUT \
   -H "Content-Type: application/json" \
   -d '{
         "account": {
