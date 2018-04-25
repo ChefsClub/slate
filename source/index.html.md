@@ -239,6 +239,43 @@ Destroy a user session.
 
 # Passwords
 
+## Change password
+
+```shell
+curl https://account.chefsclub.com.br/api/v3/clients/passwords \
+  -i -X PUT \
+  -H "Content-Type: application/json" \
+   -H "X-Client-Access-Token:
+   XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs=" \
+  -d '{
+        "account": {
+            "password": "chefs123",
+            "password_confirmation":"chefs123",
+            "old_password": "so283dg2663"
+          }
+      }'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "account":
+    {
+      "access_token":"XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs=",
+    }
+}
+```
+
+This endpoint changes a password for an authenticated user, but the previous
+password must be informed.
+
+
+### HTTP Request
+
+`PUT https://account.chefsclub.com.br/api/v3/clients/passwords`
+
+
 ## Send recovery email
 
 ```shell
