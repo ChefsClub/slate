@@ -255,6 +255,9 @@
             <a href="#passwords" class="toc-h1 toc-link" data-title="Passwords">Passwords</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#change-password" class="toc-h2 toc-link" data-title="Change password">Change password</a>
+                  </li>
+                  <li>
                     <a href="#send-recovery-email" class="toc-h2 toc-link" data-title="Send recovery email">Send recovery email</a>
                   </li>
                   <li>
@@ -619,7 +622,34 @@
 <p>Destroy a user session.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST https://account.chefsclub.com.br/api/v3/reservations</code></p>
-<h1 id='passwords'>Passwords</h1><h2 id='send-recovery-email'>Send recovery email</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/recover_passwords <span class="se">\</span>
+<h1 id='passwords'>Passwords</h1><h2 id='change-password'>Change password</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/clients/passwords <span class="se">\</span>
+  -i -X PUT <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+   -H <span class="s2">"X-Client-Access-Token:
+   XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="</span> <span class="se">\</span>
+  -d <span class="s1">'{
+        "account": {
+            "password": "chefs123",
+            "password_confirmation":"chefs123",
+            "old_password": "so283dg2663"
+          }
+      }'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"account"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"access_token"</span><span class="p">:</span><span class="s2">"XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="</span><span class="p">,</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint changes a password for an authenticated user, but the previous
+password must be informed.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>PUT https://account.chefsclub.com.br/api/v3/clients/passwords</code></p>
+<h2 id='send-recovery-email'>Send recovery email</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/recover_passwords <span class="se">\</span>
   -i -X POST <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -d <span class="s1">'{ "account": { "auth_key" : "email@example.org" } }'</span>
@@ -629,7 +659,7 @@
 </blockquote>
 
 <p>This endpoint sends en email to the client with a password recovery token</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>POST https://account.chefsclub.com.br/api/v3/recover_passwords</code></p>
 <h2 id='recover-password'>Recover password</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/recover_passwords <span class="se">\</span>
   -i -X PUT <span class="se">\</span>
@@ -659,7 +689,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint updates the client password if the recovery token is correct and makes a new session to the user</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>PUT https://account.chefsclub.com.br/api/v3/recover_passwords</code></p>
 <h1 id='usage'>Usage</h1><h2 id='list-all-bookings-and-checkins'>List all bookings and checkins</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/usages <span class="se">\</span>
   -i -X GET <span class="se">\</span>
@@ -836,7 +866,7 @@
 <td>Reserva não mais disponível</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>POST https://account.chefsclub.com.br/api/v3/usages</code></p>
 <h2 id='cancel-a-booking'>Cancel a booking</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/usages/&lt;ID&gt; <span class="se">\</span>
   -i -X DELETE <span class="se">\</span>
@@ -866,7 +896,7 @@
 <td>The ID of the  booking reservation to cancel</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>DELETE https://account.chefsclub.com.br/api/v3/usages/&lt;ID&gt;</code></p>
 
 <hr>
@@ -922,7 +952,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/areas</code></p>
 <h1 id='restaurants'>Restaurants</h1><h2 id='retrieve-restaurants'>Retrieve restaurants</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants <span class="se">\</span>
   -i -X GET <span class="se">\</span>
@@ -1046,7 +1076,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>Define a ordenação dos resultados A ordenação padrão muda para name (relevância do nome pesquisado) se a busca for por nome de restaurante. E se a busca for geolocalizada a ordenação padrão muda para nearest (mais próximos). Default: ranking. Possible values:  name , nearest , ranking , recommended .</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/restaurants</code></p>
 <h2 id='get-a-restaurant'>Get a restaurant</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d<span class="sb">`</span> <span class="se">\</span>
   -i -X GET <span class="se">\</span>
@@ -1156,7 +1186,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>the restaurant uuid</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/restaurants/&lt;UUID&gt;</code></p>
 <h2 id='highlighted-restaurants'>Highlighted Restaurants</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants/highlights <span class="se">\</span>
   -i -X GET <span class="se">\</span>
@@ -1238,7 +1268,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>The area slug to retrieve the highlights</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/restaurants/highlights</code></p>
 <h2 id='search-by-name-autocomplete'>Search by Name (Autocomplete)</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants/autocomplete <span class="se">\</span>
   -i -X GET <span class="se">\</span>
@@ -1304,7 +1334,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>The search term</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/restaurants/autocomplete</code></p>
 <h2 id='reservation-availability'>Reservation availability</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d/availability <span class="se">\</span>
   -i -X GET <span class="se">\</span>
@@ -1354,7 +1384,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>The date to retreave the times</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/restaurants/&lt;UUID&gt;/availability</code></p>
 <h1 id='filters'>Filters</h1><h2 id='retrieve-filters'>Retrieve filters</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/filters <span class="se">\</span>
   -i -X GET <span class="se">\</span>
@@ -1578,7 +1608,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-16'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-17'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/filters</code></p>
 <h3 id='url-parameters-8'>URL Parameters</h3>
 <table><thead>
@@ -1677,7 +1707,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>Filtra por hora, Possible values:  search_next , lunch , dinner , all , HH:MM.</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/filters/&lt;FILTER_TYPE&gt;</code></p>
 <h1 id='examples'>Examples</h1><h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
@@ -1704,7 +1734,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
 <h3 id='url-parameters-10'>URL Parameters</h3>
 <table><thead>
