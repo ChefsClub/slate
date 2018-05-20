@@ -401,11 +401,17 @@ curl https://account.chefsclub.com.br/api/v3/usages \
 ## Create a booking or checkin
 
 ```shell
-curl https://account.chefsclub.com.br/api/v3/usages \
-  -i -X POST \
-  -H "Content-Type: application/json" \
-  -H "X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs=" \
-  -d '{ "reservation": { "restaurant_uuid" : "c55045f0-6e8b-471e-9556-c45af9d2861a" } }'
+curl -i \
+  -X POST \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -H "Accept: application/json; charset=utf-8" \
+  -H "X-Client-Access-Token: NvrGWQJYVZvZmX0fZ-op3MWyR3hPqQ2rW-s6FCnfgqDPDjrjCTyjsncE1aq2u370C9sY2EsyobYeGlUaUFEeLJXHkjg4sTyMFg-frvqMOxQjVzPgbiyY30MUHi6In2CsYu5avjl4G16s-tcsWX1YIU9IdYFOrZb0HfMFKjZWZKSPzI9kpWZYWKHnxqAtm8iSwO2PeSUqzIQXqCd5Jujf8hTTh_LDlo0m0GRf-r9C3FU=" \
+  -d '{
+    "reservation" : {
+      "restaurant_uuid" : "bb22cffe-41d7-44a7-a32c-a44c871dbc07"
+    }
+  }' \
+  'https://account.chefsclub.com.br/api/v3/usages'
 ```
 
 > The above command returns JSON structured like this:
@@ -444,6 +450,7 @@ curl https://account.chefsclub.com.br/api/v3/usages \
     "offer": {
       "discount": "30"
       "restriction": "Não vale menu executivo"
+      "custom_restrictions": "Na conta toda"
       "period": "10:00 - 11:00"
     }
   }
@@ -616,7 +623,7 @@ curl https://search.chefsclub.com.br/api/v6/restaurants \
           "url": "https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/3509458878559132905_o.jpg",
           "thumb": "https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/3509458878559132905_o.jpg"
         }
-      ],  
+      ],
       "available_offers": [
         "checkin",
         "book",
