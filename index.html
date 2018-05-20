@@ -750,11 +750,17 @@ password must be informed.</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='create-a-booking-or-checkin'>Create a booking or checkin</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/usages <span class="se">\</span>
-  -i -X POST <span class="se">\</span>
-  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -H <span class="s2">"X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="</span> <span class="se">\</span>
-  -d <span class="s1">'{ "reservation": { "restaurant_uuid" : "c55045f0-6e8b-471e-9556-c45af9d2861a" } }'</span>
+</span></code></pre><h2 id='create-a-booking-or-checkin'>Create a booking or checkin</h2><pre class="highlight shell tab-shell"><code>curl -i <span class="se">\</span>
+  -X POST <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json; charset=utf-8"</span> <span class="se">\</span>
+  -H <span class="s2">"Accept: application/json; charset=utf-8"</span> <span class="se">\</span>
+  -H <span class="s2">"X-Client-Access-Token: NvrGWQJYVZvZmX0fZ-op3MWyR3hPqQ2rW-s6FCnfgqDPDjrjCTyjsncE1aq2u370C9sY2EsyobYeGlUaUFEeLJXHkjg4sTyMFg-frvqMOxQjVzPgbiyY30MUHi6In2CsYu5avjl4G16s-tcsWX1YIU9IdYFOrZb0HfMFKjZWZKSPzI9kpWZYWKHnxqAtm8iSwO2PeSUqzIQXqCd5Jujf8hTTh_LDlo0m0GRf-r9C3FU="</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "reservation" : {
+      "restaurant_uuid" : "bb22cffe-41d7-44a7-a32c-a44c871dbc07"
+    }
+  }'</span> <span class="se">\</span>
+  <span class="s1">'https://account.chefsclub.com.br/api/v3/usages'</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -792,6 +798,7 @@ password must be informed.</p>
     </span><span class="s2">"offer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
       </span><span class="s2">"restriction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Não vale menu executivo"</span><span class="w">
+      </span><span class="s2">"custom_restrictions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Na conta toda"</span><span class="w">
       </span><span class="s2">"period"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00 - 11:00"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -992,7 +999,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
           </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/3509458878559132905_o.jpg"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dqwr636hdjha6.cloudfront.net/uploads/restaurant_picture/picture/29861/3509458878559132905_o.jpg"</span><span class="w">
         </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">  
+      </span><span class="p">],</span><span class="w">
       </span><span class="s2">"available_offers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="s2">"checkin"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"book"</span><span class="p">,</span><span class="w">
