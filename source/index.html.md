@@ -336,10 +336,13 @@ This endpoint updates the client password if the recovery token is correct and m
 ## List all bookings and checkins
 
 ```shell
-curl https://account.chefsclub.com.br/api/v3/usages \
-  -i -X GET \
-  -H "Content-Type: application/json" \
+curl -i \
+  -X GET \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -H "Accept: application/json; charset=utf-8" \
   -H "X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="
+  -d '{}' \
+  'http://stg-account.chefsclub.com.br/api/v3/usages'
 ```
 
 > The above command returns JSON structured like this:
