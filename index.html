@@ -533,15 +533,18 @@
 <p>Same as the client creations</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>PATCH https://account.chefsclub.com.br/api/v3/clients/:id</code></p>
-<h1 id='session'>Session</h1><h2 id='create-a-session'>Create a Session</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/sessions <span class="se">\</span>
-  -i -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+<h1 id='session'>Session</h1><h2 id='create-a-session'>Create a Session</h2><pre class="highlight shell tab-shell"><code>curl -i <span class="se">\</span>
   -X POST <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json; charset=utf-8"</span> <span class="se">\</span>
+  -H <span class="s2">"Accept: application/json; charset=utf-8"</span> <span class="se">\</span>
   -d <span class="s1">'{
         "account": {
           "email" : "marolito@gmail.com",
-          "password": "123456"
+          "cpf" : "18005879881",
+          "password": "e07a1d5f"
          }
-      }'</span>
+      }'</span> <span class="se">\</span>
+  <span class="s1">'https://account.chefsclub.com.br/api/v3/sessions'</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -574,6 +577,10 @@
 <td>The email of the user</td>
 </tr>
 <tr>
+<td>cpf</td>
+<td>The CPF of the user</td>
+</tr>
+<tr>
 <td>password</td>
 <td>The password should be passed along the email</td>
 </tr>
@@ -586,6 +593,8 @@
 <td>The identity provider used to authenticate (Facebook, Google)</td>
 </tr>
 </tbody></table>
+
+<p><code>email</code> or <code>cpf</code> are needed, not both simultaneously</p>
 <h3 id='status-codes-2'>Status Codes:</h3>
 <table><thead>
 <tr>
