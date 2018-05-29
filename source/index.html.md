@@ -167,15 +167,18 @@ Same as the client creations
 ## Create a Session
 
 ```shell
-curl https://account.chefsclub.com.br/api/v3/sessions \
-  -i -H "Content-Type: application/json" \
+curl -i \
   -X POST \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -H "Accept: application/json; charset=utf-8" \
   -d '{
         "account": {
           "email" : "marolito@gmail.com",
-          "password": "123456"
+          "cpf" : "18005879881",
+          "password": "e07a1d5f"
          }
-      }'
+      }' \
+  'https://account.chefsclub.com.br/api/v3/sessions'
 ```
 
 > The above command returns JSON structured like this:
@@ -206,9 +209,12 @@ Create user session based on the possible credentials.
 Parameter | Description
 --------- | -----------
 email | The email of the user
+cpf | The CPF of the user
 password | The password should be passed along the email
 oauth_token | The oauth_token from the identity provider used to authenticate (Facebook, Google)
 oauh_provider | The identity provider used to authenticate (Facebook, Google)
+
+```email``` or ```cpf``` are needed, not both simultaneously
 
 ### Status Codes:
 Code | Description
