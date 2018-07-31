@@ -1301,6 +1301,51 @@ time | Filtra por hora, Possible values:  search_next , lunch , dinner , all , H
 
 `GET https://search.chefsclub.com.br/api/v6/filters/<FILTER_TYPE>`
 
+# Reviews
+
+## Retrieve Reviews
+
+```shell
+curl https://account.chefsclub.com.br/api/v2/restaurants/{restaurantId}/reviews \
+  -i -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Client-Access-Token: access_token" \
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "average_rating":5.0,
+  "reviews_count":2,
+  "rating_distribution":{"1":1,"4":2,"5":5},
+  "reviews":[
+    {
+      "rating":4,
+      "comment": "Muito bom!",
+      "aspects":[{"type" : "Desconto obtido"},{"type" : "Qualidade da comida"}],
+      "created_at":"2017-04-16T21:37:11-03:00",
+      "author_name":"Claudio Augusto"
+    },
+    {
+      "rating":5,
+      "comment":null,
+      "aspects":[{"type" : "Variedade do cardápio"},{"type" : "Atendimento"},{"type" : "Desconto obtido"},{"type" : "Qualidade da comida"}],
+      "created_at":"2017-02-13T00:24:35-02:00",
+      "author_name":"Beatriz M."
+    }
+  ]
+}
+
+```
+###  URL Parameters
+
+Parameter | Description
+--------- | -----------
+restaurant_id | Id do restaurante.
+page |  Página desejada
+
+
 # Examples
 
 ## Delete a Specific Kitten
