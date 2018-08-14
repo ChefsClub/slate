@@ -131,10 +131,10 @@ curl https://account.chefsclub.com.br/api/v3/clients/74e7c0ff-706e-4f88-a560-7bf
   -i -H "Content-Type: application/json" \
   -X PUT \
   -d '{
-        "client": {
-          "full_name":"Leonardo Ferreira da Silva"
-         }
-      }'
+    "client": {
+      "full_name":"Leonardo Ferreira da Silva"
+    }
+  }'
 ```
 
 > The above command returns JSON structured like this:
@@ -527,6 +527,96 @@ ID | The ID of the  booking reservation to cancel
 
 `DELETE https://account.chefsclub.com.br/api/v3/usages/<ID>`
 
+
+## Create a review to Usage
+
+This endpoint permit you update info about a usage and create the review/feedback to it.
+
+
+Example of request
+
+```shell
+curl -i "https://account.chefsclub.com.br/api/v3/usages/$usage_id"\
+  -X PUT
+  -H "Content-Type: application/json" \
+  -H "X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs=" \
+  -d '{
+    "reservation": {
+      "review_rating": 4,
+      "review_comment": "Mussum Ipsum, cacilds vidis litro abertis. Atirei o pau no gatis, per gatis num morreus."
+    }
+  }'
+```
+
+The response should be like document below
+
+```json
+{
+  "reservation": {
+    "id": 5,
+    "starts_at": "2018-08-14T00:00:00-03:00",
+    "expires_at": null,
+    "canceled_at": null,
+    "savings": null,
+    "rating": 4,
+    "comment": "Mussum Ipsum, cacilds vidis litro abertis. Atirei o pau no gatis, per gatis num morreus.",
+    "type": null,
+    "seats": null,
+    "offer": {
+      "restriction": "",
+      "custom_restrictions": ""
+    },
+    "restaurant": {
+      "uuid": "ca9fb3a8-96ed-4dd5-9a58-f374b8240aa1",
+      "name": "La Mole",
+      "main_cuisine": null,
+      "price_range": null,
+      "address": {
+        "neighbourhood": null,
+        "city": "Rio de Janeiro",
+        "latitude": -22.19386272,
+        "longitude": -44.38198463
+      },
+      "photos": [
+        {
+          "type": "profile",
+          "url": null,
+          "thumb": null
+        }
+      ],
+      "average_rating": null,
+      "active": true
+    },
+    "client": {
+      "full_name": "Paulo Patto",
+      "cpf": "19151234500"
+    }
+  }
+}
+```
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+USAGE_ID | The ID of the  booking reservation to review
+
+### HTTP Request
+
+`PUT|PATCH https://account.chefsclub.com.br/api/v3/usages/:usage_id`
+
+### Request Body
+
+Parameter | Description
+--------- | -----------
+rating | The rating of review (integer)
+comment | The comment about you experience (string)
+
+### HEADERS
+
+Header | Description
+------ | -----------
+X-Client-Access-Token | Client Access token
 
 ---
 
