@@ -991,6 +991,80 @@ date | The date to retreave the times
 `GET https://search.chefsclub.com.br/api/v6/restaurants/<UUID>/availability`
 
 
+# Reviews
+
+## Retrieve review
+
+Given a customer made a validation (usage) can it write a review (see 'Create a review to Usage').
+This endpoint, allows retrieving the list of reviews to Restaurant.
+
+Example of request:
+
+```shell
+curl \
+  -H "Content-Type: application/json" \
+  -H "X-Client-Access-Token: $ACCESS_TOKEN" \
+  -X GET "//$troisgros_endpoint/api/v3/restaurants/:restaurant_id/reviews"
+```
+
+Example of response:
+
+```json
+{
+  "average_rating": 3.25,
+  "reviews_count": 4,
+  "rating_distribution": {
+    "2": 1,
+    "3": 2,
+    "5": 1
+  },
+  "rating_histogram": {
+    "2": 1,
+    "3": 2,
+    "5": 1
+  },
+  "reviews": [
+    {
+      "rating": 5,
+      "comment": "Architecto soluta similique aut. Voluptatem magni tenetur dolorem qui. At accusamus laudantium dolorem fugiat et perferendis.",
+      "aspects": [ ],
+      "created_at": "2018-08-16T11:22:49.746-03:00",
+      "author_name": "Murilo"
+    },
+    {
+      "rating": 3,
+      "comment": "Architecto soluta similique aut. Voluptatem magni tenetur dolorem qui. At accusamus laudantium dolorem fugiat et perferendis.",
+      "aspects": [ ],
+      "created_at": "2018-08-16T11:22:49.919-03:00",
+      "author_name": "Rafael"
+    },
+    {
+      "rating": 3,
+      "comment": "Architecto soluta similique aut. Voluptatem magni tenetur dolorem qui. At accusamus laudantium dolorem fugiat et perferendis.",
+      "aspects": [ ],
+      "created_at": "2018-08-16T11:22:49.820-03:00",
+      "author_name": "Suélen"
+    },
+    {
+      "rating": 2,
+      "comment": "Architecto soluta similique aut. Voluptatem magni tenetur dolorem qui. At accusamus laudantium dolorem fugiat et perferendis.",
+      "aspects": [ ],
+      "created_at": "2018-08-16T11:22:50.011-03:00",
+      "author_name": "Yago"
+    }
+  ],
+  "metadata": {
+    "pagination": {
+      "current_page": 1,
+      "per_page": 10,
+      "total_results": 4
+    }
+  }
+}
+```
+
+Can you paginate you results using metadata, :per_page and :page
+
 # Filters
 
 ## Retrieve filters
