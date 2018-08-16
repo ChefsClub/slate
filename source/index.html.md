@@ -1065,6 +1065,21 @@ Example of response:
 
 Can you paginate you results using metadata, :per_page and :page
 
+### HEADERS
+
+Header | Description
+------ | -----------
+X-Client-Access-Token | Client Access token
+
+### URL Parameters
+
+Parameter | Description | Rule
+--------- | ----------- | ----
+restaurant_id | ID of restaurant target | Required
+page | The page number offset | Optional, Default 1
+per_page | Amount of results per page | Optional, default 10
+
+
 # Filters
 
 ## Retrieve filters
