@@ -50,6 +50,7 @@ cpf | The cpf of the user to search
 oauth_user_id | The user id from the identity provider used to authenticate (Facebook, Google)
 
 ### Status Codes:
+
 Code | Description
 --------- | -----------
 200 | Found
@@ -126,15 +127,15 @@ promocode | A promocode from a caimpaing in order to increase months at user sub
 
 ## Update a client
 
-````shell
+```shell
 curl https://account.chefsclub.com.br/api/v3/clients/74e7c0ff-706e-4f88-a560-7bfcaa09356f \
   -i -H "Content-Type: application/json" \
   -X PUT \
   -d '{
-        "client": {
-          "full_name":"Leonardo Ferreira da Silva"
-         }
-      }'
+    "client": {
+      "full_name":"Leonardo Ferreira da Silva"
+    }
+  }'
 ```
 
 > The above command returns JSON structured like this:
@@ -988,6 +989,7 @@ date | The date to retreave the times
 ### HTTP Request
 
 `GET https://search.chefsclub.com.br/api/v6/restaurants/<UUID>/availability`
+
 
 # Filters
 
