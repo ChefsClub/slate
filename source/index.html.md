@@ -1350,6 +1350,86 @@ page |  Página desejada
 
 # Examples
 
+
+# Surveys (V3)
+
+## Get surveys
+
+To grab specific survey to the usage can you use:
+
+`GET //:troisgros_endpoint/api/v3/surveys/:usage_id`
+
+### Example of request
+
+```shell
+curl -X GET "$troisgros_endpoint/api/v3/surveys/$usage_id" \
+  -H 'Content-Type: application/json'
+  -H 'X-Client-Access-Token: $X_Client_Access_Token
+```
+
+### Example of response
+
+```json
+{
+    "questions": [
+        {
+            "id": 1,
+            "icon": "some-positive-icon",
+            "title": "Do que você mais gostou?",
+            "subtitle": "Você pode selecionar várias opções",
+            "type": "multiple",
+            "aspects": [
+                { "id": 1, "type": "Custo x benefício" },
+                { "id": 2, "type": "Qualidade da comida" },
+                { "id": 3, "type": "Variedade do cardápio" },
+                { "id": 4, "type": "Atendimento" },
+                { "id": 5, "type": "Ambiente e decoração" }
+            ]
+        },
+        {
+            "id": 2,
+            "icon": "some-positive-icon",
+            "title": "Você recomendaria para?",
+            "subtitle": "Você pode selecionar várias opções",
+            "type": "multiple",
+            "aspects": [
+                { "id": 6, "type": "Jantar romântico" },
+                { "id": 7, "type": "Ir com a família" },
+                { "id": 8, "type": "Almoço de negócios" },
+                { "id": 9, "type": "Ir com amigos" },
+                { "id": 10, "type": "Happy Hour" },
+                { "id": 11, "type": "Comer rápido" }
+            ]
+        }
+    ]
+}
+```
+
+## Write a Survey
+
+`POST //:troisgros_endpoint/api/v3/surveys/`
+
+
+##Example of request
+
+```shell
+curl -X POST "$troisgros_endpoint/api/v3/surveys/" \
+  -H 'Contente-Type: application/json'
+  -H "X-Client-Access-Token: $X_CLIENT_ACCESS_TOKEN"
+  -d '
+    {
+      "usuario_id": "$X_CLIENT_ACCESS_TOKEN",
+      "usage_id": "$usage_id",
+      "questions": [
+        { "id": 1, "answers": ["Qualidade da comida", "Ambiente e decoração", "Atendimento"] },
+        { "id": 2, "answers": ["Happy Hour", "Comer rápido"] }
+      ]
+    }
+  '
+```
+
+-----
+
 ## Delete a Specific Kitten
 
 ```ruby
