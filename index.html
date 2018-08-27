@@ -322,8 +322,28 @@
               </ul>
           </li>
           <li>
-            <a href="#examples" class="toc-h1 toc-link" data-title="Examples">Examples</a>
+            <a href="#reviews" class="toc-h1 toc-link" data-title="Reviews">Reviews</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#retrieve-reviews" class="toc-h2 toc-link" data-title="Retrieve Reviews">Retrieve Reviews</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#examples" class="toc-h1 toc-link" data-title="Examples">Examples</a>
+          </li>
+          <li>
+            <a href="#surveys-v3" class="toc-h1 toc-link" data-title="Surveys (V3)">Surveys (V3)</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-surveys" class="toc-h2 toc-link" data-title="Get surveys">Get surveys</a>
+                  </li>
+                  <li>
+                    <a href="#write-a-survey" class="toc-h2 toc-link" data-title="Write a Survey">Write a Survey</a>
+                  </li>
+                  <li>
+                    <a href="#example-of-request-2" class="toc-h2 toc-link" data-title="Example of request">Example of request</a>
+                  </li>
                   <li>
                     <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
                   </li>
@@ -508,10 +528,10 @@
   -i -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -X PUT <span class="se">\</span>
   -d <span class="s1">'{
-        "client": {
-          "full_name":"Leonardo Ferreira da Silva"
-         }
-      }'</span>
+    "client": {
+      "full_name":"Leonardo Ferreira da Silva"
+    }
+  }'</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1728,7 +1748,110 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 </tbody></table>
 <h3 id='http-request-18'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/filters/&lt;FILTER_TYPE&gt;</code></p>
-<h1 id='examples'>Examples</h1><h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h1 id='reviews'>Reviews</h1><h2 id='retrieve-reviews'>Retrieve Reviews</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v2/restaurants/<span class="o">{</span>restaurantId<span class="o">}</span>/reviews <span class="se">\</span>
+  -i -X GET <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"X-Client-Access-Token: access_token"</span> <span class="se">\</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"average_rating"</span><span class="p">:</span><span class="mf">5.0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"reviews_count"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"rating_distribution"</span><span class="p">:{</span><span class="s2">"1"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">"4"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s2">"5"</span><span class="p">:</span><span class="mi">5</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"reviews"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rating"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Muito bom!"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"aspects"</span><span class="p">:[{</span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Desconto obtido"</span><span class="p">},{</span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Qualidade da comida"</span><span class="p">}],</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2017-04-16T21:37:11-03:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"author_name"</span><span class="p">:</span><span class="s2">"Claudio Augusto"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rating"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comment"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"aspects"</span><span class="p">:[{</span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Variedade do cardápio"</span><span class="p">},{</span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Atendimento"</span><span class="p">},{</span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Desconto obtido"</span><span class="p">},{</span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Qualidade da comida"</span><span class="p">}],</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2017-02-13T00:24:35-02:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"author_name"</span><span class="p">:</span><span class="s2">"Beatriz M."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='url-parameters-10'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>restaurant_id</td>
+<td>Id do restaurante.</td>
+</tr>
+<tr>
+<td>page</td>
+<td>Página desejada</td>
+</tr>
+</tbody></table>
+<h1 id='examples'>Examples</h1><h1 id='surveys-v3'>Surveys (V3)</h1><h2 id='get-surveys'>Get surveys</h2>
+<p>To grab specific survey to the usage can you use:</p>
+
+<p><code>GET //:troisgros_endpoint/api/v3/surveys/:usage_id</code></p>
+<h3 id='example-of-request'>Example of request</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="s2">"</span><span class="nv">$troisgros_endpoint</span><span class="s2">/api/v3/surveys/</span><span class="nv">$usage_id</span><span class="s2">"</span> <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>
+  -H <span class="s1">'X-Client-Access-Token: $X_Client_Access_Token
+</span></code></pre><h3 id='example-of-response'>Example of response</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-positive-icon"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Do que você mais gostou?"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"subtitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Você pode selecionar várias opções"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"multiple"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"aspects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w"> </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custo x benefício"</span><span class="w"> </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w"> </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Qualidade da comida"</span><span class="w"> </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w"> </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variedade do cardápio"</span><span class="w"> </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w"> </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Atendimento"</span><span class="w"> </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w"> </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ambiente e decoração"</span><span class="w"> </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-positive-icon"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Você recomendaria para?"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"subtitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Você pode selecionar várias opções"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"multiple"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"aspects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w"> </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jantar romântico"</span><span class="w"> </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w"> </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ir com a família"</span><span class="w"> </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w"> </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Almoço de negócios"</span><span class="w"> </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w"> </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ir com amigos"</span><span class="w"> </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w"> </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Happy Hour"</span><span class="w"> </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w"> </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Comer rápido"</span><span class="w"> </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='write-a-survey'>Write a Survey</h2>
+<p><code>POST //:troisgros_endpoint/api/v3/surveys/</code></p>
+<h2 id='example-of-request-2'>Example of request</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"</span><span class="nv">$troisgros_endpoint</span><span class="s2">/api/v3/surveys/"</span> <span class="se">\</span>
+  -H <span class="s1">'Contente-Type: application/json'</span>
+  -H <span class="s2">"X-Client-Access-Token: </span><span class="nv">$X_CLIENT_ACCESS_TOKEN</span><span class="s2">"</span>
+  -d <span class="s1">'
+    {
+      "usuario_id": "$X_CLIENT_ACCESS_TOKEN",
+      "usage_id": "$usage_id",
+      "questions": [
+        { "id": 1, "answers": ["Qualidade da comida", "Ambiente e decoração", "Atendimento"] },
+        { "id": 2, "answers": ["Happy Hour", "Comer rápido"] }
+      ]
+    }
+  '</span>
+</code></pre>
+<hr>
+<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
 <span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -1755,7 +1878,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <p>This endpoint deletes a specific kitten.</p>
 <h3 id='http-request-19'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-10'>URL Parameters</h3>
+<h3 id='url-parameters-11'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
