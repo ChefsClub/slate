@@ -1044,7 +1044,7 @@ This endpoint, allows retrieving the list of reviews to Restaurant.
 Example of request:
 
 ```shell
-curl -X GET "//$troisgros_endpoint/api/v3/restaurants/:restaurant_id/reviews"
+curl -X GET "//$troisgros_endpoint/api/v3/restaurants/:restaurant_uuid/reviews"
   -H "Content-Type: application/json" \
   -H "X-Client-Access-Token: $ACCESS_TOKEN" \
 ```
@@ -1117,7 +1117,7 @@ X-Client-Access-Token | Client Access token
 
 Parameter | Description | Rule
 --------- | ----------- | ----
-restaurant_id | ID of restaurant target | Required
+restaurant_uuid | UUID of restaurant target | Required
 page | The page number offset | Optional, Default 1
 per_page | Amount of results per page | Optional, default 10
 
