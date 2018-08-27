@@ -1041,7 +1041,7 @@ page |  Página desejada
 Given a customer made a validation (usage) can it write a review (see 'Create a review to Usage').
 This endpoint, allows retrieving the list of reviews to Restaurant.
 
-Example of request:
+### Example of request
 
 ```shell
 curl -X GET "//$troisgros_endpoint/api/v3/restaurants/:restaurant_uuid/reviews"
@@ -1049,7 +1049,7 @@ curl -X GET "//$troisgros_endpoint/api/v3/restaurants/:restaurant_uuid/reviews"
   -H "X-Client-Access-Token: $ACCESS_TOKEN" \
 ```
 
-Example of response:
+#### Example of response
 
 ```json
 {
@@ -1069,28 +1069,28 @@ Example of response:
     {
       "rating": 5,
       "comment": "Architecto soluta similique aut. Voluptatem magni tenetur dolorem qui. At accusamus laudantium dolorem fugiat et perferendis.",
-      "aspects": [ ],
+      "aspects": [ { "type": "Desconto obtido" }, { "type": "Qualidade da comida" } ],
       "created_at": "2018-08-16T11:22:49.746-03:00",
       "author_name": "Murilo"
     },
     {
       "rating": 3,
       "comment": "Architecto soluta similique aut. Voluptatem magni tenetur dolorem qui. At accusamus laudantium dolorem fugiat et perferendis.",
-      "aspects": [ ],
+      "aspects": [ { "type": "Desconto obtido" }, { "type": "Qualidade da comida" } ],
       "created_at": "2018-08-16T11:22:49.919-03:00",
       "author_name": "Rafael"
     },
     {
       "rating": 3,
       "comment": "Architecto soluta similique aut. Voluptatem magni tenetur dolorem qui. At accusamus laudantium dolorem fugiat et perferendis.",
-      "aspects": [ ],
+      "aspects": [ { "type": "Atendimento" }, { "type": "Ambiente" } ],
       "created_at": "2018-08-16T11:22:49.820-03:00",
       "author_name": "Suélen"
     },
     {
       "rating": 2,
       "comment": "Architecto soluta similique aut. Voluptatem magni tenetur dolorem qui. At accusamus laudantium dolorem fugiat et perferendis.",
-      "aspects": [ ],
+      "aspects": [ { "type": "Atendimento" }, { "type": "Ambiente" }, { "type": "Desconto obtido" } ],
       "created_at": "2018-08-16T11:22:50.011-03:00",
       "author_name": "Yago"
     }
