@@ -1081,6 +1081,137 @@ date | The date to retreave the times
 `GET https://search.chefsclub.com.br/api/v6/restaurants/<UUID>/availability`
 
 
+# Reviews
+
+## Retrieve Reviews (V2)
+```shell
+curl https://account.chefsclub.com.br/api/v2/restaurants/{restaurantId}/reviews \
+  -i -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Client-Access-Token: access_token" \
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "average_rating":5.0,
+  "reviews_count":2,
+  "rating_distribution":{"1":1,"4":2,"5":5},
+  "reviews":[
+    {
+      "rating":4,
+      "comment": "Muito bom!",
+      "aspects":[{"type" : "Desconto obtido"},{"type" : "Qualidade da comida"}],
+      "created_at":"2017-04-16T21:37:11-03:00",
+      "author_name":"Claudio Augusto"
+    },
+    {
+      "rating":5,
+      "comment":null,
+      "aspects":[{"type" : "Variedade do cardápio"},{"type" : "Atendimento"},{"type" : "Desconto obtido"},{"type" : "Qualidade da comida"}],
+      "created_at":"2017-02-13T00:24:35-02:00",
+      "author_name":"Beatriz M."
+    }
+  ]
+}
+
+```
+###  URL Parameters
+
+Parameter | Description
+--------- | -----------
+restaurant_id | Id do restaurante.
+page |  Página desejada
+
+
+
+## Retrieve review (V3)
+
+Given a customer made a validation (usage) can it write a review (see 'Create a review to Usage').
+This endpoint, allows retrieving the list of reviews to Restaurant.
+
+### Example of request
+
+```shell
+curl -X GET "//$troisgros_endpoint/api/v3/restaurants/:restaurant_uuid/reviews"
+  -H "Content-Type: application/json" \
+  -H "X-Client-Access-Token: $ACCESS_TOKEN" \
+```
+
+#### Example of response
+
+```json
+{
+  "average_rating": 3.25,
+  "reviews_count": 4,
+  "rating_distribution": {
+    "2": 1,
+    "3": 2,
+    "5": 1
+  },
+  "rating_histogram": {
+    "2": 1,
+    "3": 2,
+    "5": 1
+  },
+  "reviews": [
+    {
+      "rating": 5,
+      "comment": "Architecto soluta similique aut. Voluptatem magni tenetur dolorem qui. At accusamus laudantium dolorem fugiat et perferendis.",
+      "aspects": [ { "type": "Desconto obtido" }, { "type": "Qualidade da comida" } ],
+      "created_at": "2018-08-16T11:22:49.746-03:00",
+      "author_name": "Murilo"
+    },
+    {
+      "rating": 3,
+      "comment": "Architecto soluta similique aut. Voluptatem magni tenetur dolorem qui. At accusamus laudantium dolorem fugiat et perferendis.",
+      "aspects": [ { "type": "Desconto obtido" }, { "type": "Qualidade da comida" } ],
+      "created_at": "2018-08-16T11:22:49.919-03:00",
+      "author_name": "Rafael"
+    },
+    {
+      "rating": 3,
+      "comment": "Architecto soluta similique aut. Voluptatem magni tenetur dolorem qui. At accusamus laudantium dolorem fugiat et perferendis.",
+      "aspects": [ { "type": "Atendimento" }, { "type": "Ambiente" } ],
+      "created_at": "2018-08-16T11:22:49.820-03:00",
+      "author_name": "Suélen"
+    },
+    {
+      "rating": 2,
+      "comment": "Architecto soluta similique aut. Voluptatem magni tenetur dolorem qui. At accusamus laudantium dolorem fugiat et perferendis.",
+      "aspects": [ { "type": "Atendimento" }, { "type": "Ambiente" }, { "type": "Desconto obtido" } ],
+      "created_at": "2018-08-16T11:22:50.011-03:00",
+      "author_name": "Yago"
+    }
+  ],
+  "metadata": {
+    "pagination": {
+      "current_page": 1,
+      "per_page": 10,
+      "total_results": 4
+    }
+  }
+}
+```
+
+Can you paginate you results using metadata parameters, `:per_page` and `:page`
+
+### HEADERS
+
+Header | Description
+------ | -----------
+X-Client-Access-Token | Client Access token
+
+### URL Parameters
+
+Parameter | Description | Rule
+--------- | ----------- | ----
+restaurant_uuid | UUID of restaurant target | Required
+page | The page number offset | Optional, Default 1
+per_page | Amount of results per page | Optional, default 10
+
+
 # Filters
 
 ## Retrieve filters
@@ -1392,53 +1523,6 @@ time | Filtra por hora, Possible values:  search_next , lunch , dinner , all , H
 ### HTTP Request
 
 `GET https://search.chefsclub.com.br/api/v6/filters/<FILTER_TYPE>`
-
-# Reviews
-
-## Retrieve Reviews
-
-```shell
-curl https://account.chefsclub.com.br/api/v2/restaurants/{restaurantId}/reviews \
-  -i -X GET \
-  -H "Content-Type: application/json" \
-  -H "X-Client-Access-Token: access_token" \
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "average_rating":5.0,
-  "reviews_count":2,
-  "rating_distribution":{"1":1,"4":2,"5":5},
-  "reviews":[
-    {
-      "rating":4,
-      "comment": "Muito bom!",
-      "aspects":[{"type" : "Desconto obtido"},{"type" : "Qualidade da comida"}],
-      "created_at":"2017-04-16T21:37:11-03:00",
-      "author_name":"Claudio Augusto"
-    },
-    {
-      "rating":5,
-      "comment":null,
-      "aspects":[{"type" : "Variedade do cardápio"},{"type" : "Atendimento"},{"type" : "Desconto obtido"},{"type" : "Qualidade da comida"}],
-      "created_at":"2017-02-13T00:24:35-02:00",
-      "author_name":"Beatriz M."
-    }
-  ]
-}
-
-```
-###  URL Parameters
-
-Parameter | Description
---------- | -----------
-restaurant_id | Id do restaurante.
-page |  Página desejada
-
-
-# Examples
 
 
 # Surveys (V3)
