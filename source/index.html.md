@@ -529,6 +529,96 @@ ID | The ID of the  booking reservation to cancel
 `DELETE https://account.chefsclub.com.br/api/v3/usages/<ID>`
 
 
+## Create a review to Usage
+
+This endpoint permit you update info about a usage and create the review/feedback to it.
+
+
+Example of request
+
+```shell
+curl -i "https://account.chefsclub.com.br/api/v3/usages/$usage_id"\
+  -X PUT
+  -H "Content-Type: application/json" \
+  -H "X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs=" \
+  -d '{
+    "reservation": {
+      "review_rating": 4,
+      "review_comment": "Mussum Ipsum, cacilds vidis litro abertis. Atirei o pau no gatis, per gatis num morreus."
+    }
+  }'
+```
+
+The response should be like document below
+
+```json
+{
+  "reservation": {
+    "id": 5,
+    "starts_at": "2018-08-14T00:00:00-03:00",
+    "expires_at": null,
+    "canceled_at": null,
+    "savings": null,
+    "rating": 4,
+    "comment": "Mussum Ipsum, cacilds vidis litro abertis. Atirei o pau no gatis, per gatis num morreus.",
+    "type": null,
+    "seats": null,
+    "offer": {
+      "restriction": "",
+      "custom_restrictions": ""
+    },
+    "restaurant": {
+      "uuid": "ca9fb3a8-96ed-4dd5-9a58-f374b8240aa1",
+      "name": "La Mole",
+      "main_cuisine": null,
+      "price_range": null,
+      "address": {
+        "neighbourhood": null,
+        "city": "Rio de Janeiro",
+        "latitude": -22.19386272,
+        "longitude": -44.38198463
+      },
+      "photos": [
+        {
+          "type": "profile",
+          "url": null,
+          "thumb": null
+        }
+      ],
+      "average_rating": null,
+      "active": true
+    },
+    "client": {
+      "full_name": "Paulo Patto",
+      "cpf": "19151234500"
+    }
+  }
+}
+```
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+USAGE_ID | The ID of the  booking reservation to review
+
+### HTTP Request
+
+`PUT|PATCH https://account.chefsclub.com.br/api/v3/usages/:usage_id`
+
+### Request Body
+
+Parameter | Description
+--------- | -----------
+rating | The rating of review (integer)
+comment | The comment about you experience (string)
+
+### HEADERS
+
+Header | Description
+------ | -----------
+X-Client-Access-Token | Client Access token
+
 ---
 
 
@@ -1435,6 +1525,84 @@ time | Filtra por hora, Possible values:  search_next , lunch , dinner , all , H
 `GET https://search.chefsclub.com.br/api/v6/filters/<FILTER_TYPE>`
 
 
+# Surveys (V3)
+
+## Get surveys
+
+To grab specific survey to the usage can you use:
+
+`GET //:troisgros_endpoint/api/v3/surveys/:usage_id`
+
+### Example of request
+
+```shell
+curl -X GET "$troisgros_endpoint/api/v3/surveys/$usage_id" \
+  -H 'Content-Type: application/json'
+  -H 'X-Client-Access-Token: $X_Client_Access_Token
+```
+
+### Example of response
+
+```json
+{
+    "questions": [
+        {
+            "id": 1,
+            "icon": "some-positive-icon",
+            "title": "Do que você mais gostou?",
+            "subtitle": "Você pode selecionar várias opções",
+            "type": "multiple",
+            "aspects": [
+                { "id": 1, "type": "Custo x benefício" },
+                { "id": 2, "type": "Qualidade da comida" },
+                { "id": 3, "type": "Variedade do cardápio" },
+                { "id": 4, "type": "Atendimento" },
+                { "id": 5, "type": "Ambiente e decoração" }
+            ]
+        },
+        {
+            "id": 2,
+            "icon": "some-positive-icon",
+            "title": "Você recomendaria para?",
+            "subtitle": "Você pode selecionar várias opções",
+            "type": "multiple",
+            "aspects": [
+                { "id": 6, "type": "Jantar romântico" },
+                { "id": 7, "type": "Ir com a família" },
+                { "id": 8, "type": "Almoço de negócios" },
+                { "id": 9, "type": "Ir com amigos" },
+                { "id": 10, "type": "Happy Hour" },
+                { "id": 11, "type": "Comer rápido" }
+            ]
+        }
+    ]
+}
+```
+
+## Write a Survey
+
+`POST //:troisgros_endpoint/api/v3/surveys/`
+
+
+##Example of request
+
+```shell
+curl -X POST "$troisgros_endpoint/api/v3/surveys/" \
+  -H 'Contente-Type: application/json'
+  -H "X-Client-Access-Token: $X_CLIENT_ACCESS_TOKEN"
+  -d '
+    {
+      "usuario_id": "$X_CLIENT_ACCESS_TOKEN",
+      "usage_id": "$usage_id",
+      "questions": [
+        { "id": 1, "answers": ["Qualidade da comida", "Ambiente e decoração", "Atendimento"] },
+        { "id": 2, "answers": ["Happy Hour", "Comer rápido"] }
+      ]
+    }
+  '
+```
+
+-----
 
 ## Delete a Specific Kitten
 
