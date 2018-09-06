@@ -400,7 +400,7 @@ curl -i \
       },
       "offer": {
         "discount": "30"
-        "restriction": "Não vale menu executivo"
+        "message": "Desconto na conta toda!"
         "period": "10:00 - 11:00"
       }
     }
@@ -459,8 +459,7 @@ curl -i \
     },
     "offer": {
       "discount": "30"
-      "restriction": "Não vale menu executivo"
-      "custom_restrictions": "Na conta toda"
+      "message": "Desconto na conta toda!"
       "period": "10:00 - 11:00"
     }
   }
@@ -791,12 +790,7 @@ curl https://search.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d` \
   "offers": [
     {
       "discount": 20,
-      "benefit": "nil",
-      "restrictions": [
-        "executivo",
-        "rodizio"
-      ],
-      "custom_restriction": "restaurant.usage_restrictions.to_s",
+      "message": "Desconto na conta toda! + Menu executivo",
       "formatted_availability": "Segunda a Sexta das 10:00 as 15:00",
       "starts_at": "I18n.localize",
       "ends_in": "I18n.localize()",
@@ -808,12 +802,7 @@ curl https://search.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d` \
     },
     {
       "discount": 20,
-      "benefit": "Ganhe um sorvete de chocolate por pessoa",
-      "restrictions": [
-        "executivo",
-        "rodizio"
-      ],
-      "custom_restriction": "restaurant.usage_restrictions.to_s",
+      "message": "Desconto na conta toda! + Menu executivo",
       "formatted_availability": "Segunda a Sexta das 10:00 as 15:00",
       "starts_at": "I18n.localize",
       "ends_in": "I18n.localize()",
