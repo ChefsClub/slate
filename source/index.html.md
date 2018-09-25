@@ -731,6 +731,7 @@ curl https://search.chefsclub.com.br/api/v6/restaurants \
       ],
       "offers": [
         {
+          "highlights": ["Ganhe uma cortesia"],
           "discount": 20,
           "benefit": "ganhe uma sobremesa"
         }
@@ -769,7 +770,7 @@ order | Define a ordenação dos resultados A ordenação padrão muda para name
 ## Get a restaurant
 
 ```shell
-curl https://search.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d` \
+curl https://account.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d` \
   -i -X GET \
   -H "Content-Type: application/json"
 ```
@@ -787,6 +788,34 @@ curl https://search.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d` \
     "checkin",
     "book",
     "delivery"
+  ],
+  "current_offer": {
+    "discount": 20,
+    "details": ["Desconto na conta toda!", "Cortesia"],
+    "benefits": "1 taça de vinho",
+    "restrictions": "Não é válido para menu executivo",
+    "seats": 4, //quantidade de assentos disponíveis
+    "formatted_availability": "Hoje até às 15:00",
+    "availability": [
+      "checkin",
+      "book",
+      "delivery"
+    ]
+  },
+  "later_offers": [
+    {
+      "discount": 20,
+      "details": ["Desconto na conta toda!", "Cortesia"],
+      "benefits": "1 taça de vinho",
+      "restrictions": "Não é válido para menu executivo",
+      "seats": 4, //quantidade de assentos disponíveis
+      "formatted_availability": "Quarta-feira das 10:00 as 15:00",
+      "availability": [
+        "checkin",
+        "book",
+        "delivery"
+      ]
+    }
   ],
   "offers": [
     {
