@@ -277,6 +277,9 @@
                   <li>
                     <a href="#cancel-a-booking" class="toc-h2 toc-link" data-title="Cancel a booking">Cancel a booking</a>
                   </li>
+                  <li>
+                    <a href="#create-a-review-to-usage" class="toc-h2 toc-link" data-title="Create a review to Usage">Create a review to Usage</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -311,6 +314,17 @@
               </ul>
           </li>
           <li>
+            <a href="#reviews" class="toc-h1 toc-link" data-title="Reviews">Reviews</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#retrieve-reviews-v2" class="toc-h2 toc-link" data-title="Retrieve Reviews (V2)">Retrieve Reviews (V2)</a>
+                  </li>
+                  <li>
+                    <a href="#retrieve-review-v3" class="toc-h2 toc-link" data-title="Retrieve review (V3)">Retrieve review (V3)</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#filters" class="toc-h1 toc-link" data-title="Filters">Filters</a>
               <ul class="toc-list-h2">
                   <li>
@@ -322,17 +336,6 @@
               </ul>
           </li>
           <li>
-            <a href="#reviews" class="toc-h1 toc-link" data-title="Reviews">Reviews</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#retrieve-reviews" class="toc-h2 toc-link" data-title="Retrieve Reviews">Retrieve Reviews</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#examples" class="toc-h1 toc-link" data-title="Examples">Examples</a>
-          </li>
-          <li>
             <a href="#surveys-v3" class="toc-h1 toc-link" data-title="Surveys (V3)">Surveys (V3)</a>
               <ul class="toc-list-h2">
                   <li>
@@ -342,7 +345,7 @@
                     <a href="#write-a-survey" class="toc-h2 toc-link" data-title="Write a Survey">Write a Survey</a>
                   </li>
                   <li>
-                    <a href="#example-of-request-2" class="toc-h2 toc-link" data-title="Example of request">Example of request</a>
+                    <a href="#example-of-request-3" class="toc-h2 toc-link" data-title="Example of request">Example of request</a>
                   </li>
                   <li>
                     <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
@@ -937,6 +940,106 @@ password must be informed.</p>
 </tbody></table>
 <h3 id='http-request-10'>HTTP Request</h3>
 <p><code>DELETE https://account.chefsclub.com.br/api/v3/usages/&lt;ID&gt;</code></p>
+<h2 id='create-a-review-to-usage'>Create a review to Usage</h2>
+<p>This endpoint permit you update info about a usage and create the review/feedback to it.</p>
+
+<p>Example of request</p>
+<pre class="highlight shell tab-shell"><code>curl -i <span class="s2">"https://account.chefsclub.com.br/api/v3/usages/</span><span class="nv">$usage_id</span><span class="s2">"</span><span class="se">\</span>
+  -X PUT
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"X-Client-Access-Token: XG1x8CxbQsOYViQpmS8rAm6GEhyMxxCuv_DFzZ4AvA8ybhusdDioafMgSHa1d-WW_T7UEqH0_HdmiSgOVQ4xH8okSwGRN_UhJ7wh1O-GKo9VZ9FWOQu_lpYMXXZIJKHa-pmo7ULJ0TIOYHV83y-9HPYY2OlWpFEYyg3eih0OvecaMQGO9JH9hHp7Qfw5Vs3gn_ThLZnvzlIsvv6xJkzTXCaYnuLoYzRcNCeAbug96fs="</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "reservation": {
+      "review_rating": 4,
+      "review_comment": "Mussum Ipsum, cacilds vidis litro abertis. Atirei o pau no gatis, per gatis num morreus."
+    }
+  }'</span>
+</code></pre>
+<p>The response should be like document below</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"reservation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-14T00:00:00-03:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"savings"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rating"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mussum Ipsum, cacilds vidis litro abertis. Atirei o pau no gatis, per gatis num morreus."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"offer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"restriction"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"custom_restrictions"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"restaurant"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ca9fb3a8-96ed-4dd5-9a58-f374b8240aa1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"La Mole"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"main_cuisine"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price_range"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"neighbourhood"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rio de Janeiro"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-22.19386272</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-44.38198463</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"profile"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"average_rating"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"client"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Paulo Patto"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cpf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19151234500"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>USAGE_ID</td>
+<td>The ID of the  booking reservation to review</td>
+</tr>
+</tbody></table>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>PUT|PATCH https://account.chefsclub.com.br/api/v3/usages/:usage_id</code></p>
+<h3 id='request-body-6'>Request Body</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>rating</td>
+<td>The rating of review (integer)</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>The comment about you experience (string)</td>
+</tr>
+</tbody></table>
+<h3 id='headers'>HEADERS</h3>
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-Client-Access-Token</td>
+<td>Client Access token</td>
+</tr>
+</tbody></table>
 
 <hr>
 <h1 id='api-de-busca-de-restaurantes'>API de Busca de Restaurantes</h1>
@@ -975,7 +1078,7 @@ password must be informed.</p>
 </span></code></pre>
 <p>Areas is a short for Interest Areas, at our api we both have the concept of city and interest areas. An interest areas can be composed by some neighboorhoods, cities or city areas.
 Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -991,7 +1094,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/areas</code></p>
 <h1 id='restaurants'>Restaurants</h1><h2 id='retrieve-restaurants'>Retrieve restaurants</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants <span class="se">\</span>
   -i -X GET <span class="se">\</span>
@@ -1039,6 +1142,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
       </span><span class="p">],</span><span class="w">
       </span><span class="s2">"offers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"highlights"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ganhe uma cortesia"</span><span class="p">],</span><span class="w">
           </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
           </span><span class="s2">"benefit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ganhe uma sobremesa"</span><span class="w">
         </span><span class="p">}</span><span class="w">
@@ -1047,7 +1151,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='url-parameters-3'>URL Parameters</h3>
+</span></code></pre><h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1079,8 +1183,8 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>Filtra por faixa de preço Possible values:  2 , 3 , 4 , 5</td>
 </tr>
 <tr>
-<td>offers</td>
-<td>Filtra por tipo de disponibilidade. É possível especificar múltiplos sources. Possible values: checkin, booking, delivery</td>
+<td>offers[]</td>
+<td>Filtra por tipo de disponibilidade. É possível especificar múltiplos sources. Possible values: checkin, booking, delivery. Ex.: offers[]=checkin,booking</td>
 </tr>
 <tr>
 <td>seats</td>
@@ -1115,9 +1219,9 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>Define a ordenação dos resultados A ordenação padrão muda para name (relevância do nome pesquisado) se a busca for por nome de restaurante. E se a busca for geolocalizada a ordenação padrão muda para nearest (mais próximos). Default: ranking. Possible values:  name , nearest , ranking , recommended .</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/restaurants</code></p>
-<h2 id='get-a-restaurant'>Get a restaurant</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d<span class="sb">`</span> <span class="se">\</span>
+<h2 id='get-a-restaurant'>Get a restaurant</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d<span class="sb">`</span> <span class="se">\</span>
   -i -X GET <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span>
 </code></pre>
@@ -1134,6 +1238,34 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
     </span><span class="s2">"checkin"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"book"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"delivery"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"current_offer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Desconto na conta toda!"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Cortesia"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"benefits"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 taça de vinho"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"restrictions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Não é válido para menu executivo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="err">//quantidade</span><span class="w"> </span><span class="err">de</span><span class="w"> </span><span class="err">assentos</span><span class="w"> </span><span class="err">disponíveis</span><span class="w">
+    </span><span class="s2">"formatted_availability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hoje até às 15:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"availability"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"checkin"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"book"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"delivery"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"later_offers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Desconto na conta toda!"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Cortesia"</span><span class="p">],</span><span class="w">
+      </span><span class="s2">"benefits"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 taça de vinho"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"restrictions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Não é válido para menu executivo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="err">//quantidade</span><span class="w"> </span><span class="err">de</span><span class="w"> </span><span class="err">assentos</span><span class="w"> </span><span class="err">disponíveis</span><span class="w">
+      </span><span class="s2">"formatted_availability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Quarta-feira das 10:00 as 15:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"availability"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"checkin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"book"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"offers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -1213,7 +1345,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
     </span><span class="s2">"contemporanea"</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='url-parameters-4'>URL Parameters</h3>
+</span></code></pre><h3 id='url-parameters-5'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1225,7 +1357,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>the restaurant uuid</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/restaurants/&lt;UUID&gt;</code></p>
 <h2 id='highlighted-restaurants'>Highlighted Restaurants</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants/highlights <span class="se">\</span>
   -i -X GET <span class="se">\</span>
@@ -1287,7 +1419,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
     </span><span class="p">]</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='url-parameters-5'>URL Parameters</h3>
+</span></code></pre><h3 id='url-parameters-6'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1307,7 +1439,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>The area slug to retrieve the highlights</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/restaurants/highlights</code></p>
 <h2 id='search-by-name-autocomplete'>Search by Name (Autocomplete)</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants/autocomplete <span class="se">\</span>
   -i -X GET <span class="se">\</span>
@@ -1361,7 +1493,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='url-parameters-6'>URL Parameters</h3>
+</span></code></pre><h3 id='url-parameters-7'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1373,7 +1505,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>The search term</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/restaurants/autocomplete</code></p>
 <h2 id='reservation-availability'>Reservation availability</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/restaurants/12344-1dks923-2938d/availability <span class="se">\</span>
   -i -X GET <span class="se">\</span>
@@ -1407,7 +1539,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='url-parameters-7'>URL Parameters</h3>
+</span></code></pre><h3 id='url-parameters-8'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1423,8 +1555,149 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>The date to retreave the times</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/restaurants/&lt;UUID&gt;/availability</code></p>
+<h1 id='reviews'>Reviews</h1><h2 id='retrieve-reviews-v2'>Retrieve Reviews (V2)</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v2/restaurants/<span class="o">{</span>restaurantId<span class="o">}</span>/reviews <span class="se">\</span>
+  -i -X GET <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"X-Client-Access-Token: access_token"</span> <span class="se">\</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"average_rating"</span><span class="p">:</span><span class="mf">5.0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"reviews_count"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"rating_distribution"</span><span class="p">:{</span><span class="s2">"1"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">"4"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s2">"5"</span><span class="p">:</span><span class="mi">5</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"reviews"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rating"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Muito bom!"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"aspects"</span><span class="p">:[{</span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Desconto obtido"</span><span class="p">},{</span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Qualidade da comida"</span><span class="p">}],</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2017-04-16T21:37:11-03:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"author_name"</span><span class="p">:</span><span class="s2">"Claudio Augusto"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rating"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comment"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"aspects"</span><span class="p">:[{</span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Variedade do cardápio"</span><span class="p">},{</span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Atendimento"</span><span class="p">},{</span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Desconto obtido"</span><span class="p">},{</span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Qualidade da comida"</span><span class="p">}],</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2017-02-13T00:24:35-02:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"author_name"</span><span class="p">:</span><span class="s2">"Beatriz M."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='url-parameters-9'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>restaurant_id</td>
+<td>Id do restaurante.</td>
+</tr>
+<tr>
+<td>page</td>
+<td>Página desejada</td>
+</tr>
+</tbody></table>
+<h2 id='retrieve-review-v3'>Retrieve review (V3)</h2>
+<p>Given a customer made a validation (usage) can it write a review (see &#39;Create a review to Usage&#39;).
+This endpoint, allows retrieving the list of reviews to Restaurant.</p>
+<h3 id='example-of-request'>Example of request</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="s2">"//</span><span class="nv">$troisgros_endpoint</span><span class="s2">/api/v3/restaurants/:restaurant_uuid/reviews"</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"X-Client-Access-Token: </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+</code></pre><h4 id='example-of-response'>Example of response</h4><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"average_rating"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.25</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"reviews_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"rating_distribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"5"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"rating_histogram"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"5"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"reviews"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rating"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Architecto soluta similique aut. Voluptatem magni tenetur dolorem qui. At accusamus laudantium dolorem fugiat et perferendis."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"aspects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Desconto obtido"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Qualidade da comida"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-16T11:22:49.746-03:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"author_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Murilo"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rating"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Architecto soluta similique aut. Voluptatem magni tenetur dolorem qui. At accusamus laudantium dolorem fugiat et perferendis."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"aspects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Desconto obtido"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Qualidade da comida"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-16T11:22:49.919-03:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"author_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rafael"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rating"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Architecto soluta similique aut. Voluptatem magni tenetur dolorem qui. At accusamus laudantium dolorem fugiat et perferendis."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"aspects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Atendimento"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ambiente"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-16T11:22:49.820-03:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"author_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Suélen"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rating"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Architecto soluta similique aut. Voluptatem magni tenetur dolorem qui. At accusamus laudantium dolorem fugiat et perferendis."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"aspects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Atendimento"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ambiente"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Desconto obtido"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-16T11:22:50.011-03:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"author_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yago"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_results"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Can you paginate you results using metadata parameters, <code>:per_page</code> and <code>:page</code></p>
+<h3 id='headers-2'>HEADERS</h3>
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-Client-Access-Token</td>
+<td>Client Access token</td>
+</tr>
+</tbody></table>
+<h3 id='url-parameters-10'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Rule</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>restaurant_uuid</td>
+<td>UUID of restaurant target</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>page</td>
+<td>The page number offset</td>
+<td>Optional, Default 1</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td>Amount of results per page</td>
+<td>Optional, default 10</td>
+</tr>
+</tbody></table>
 <h1 id='filters'>Filters</h1><h2 id='retrieve-filters'>Retrieve filters</h2><pre class="highlight shell tab-shell"><code>curl https://search.chefsclub.com.br/api/v6/filters <span class="se">\</span>
   -i -X GET <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
@@ -1647,9 +1920,9 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-17'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-18'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/filters</code></p>
-<h3 id='url-parameters-8'>URL Parameters</h3>
+<h3 id='url-parameters-11'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1710,7 +1983,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='url-parameters-9'>URL Parameters</h3>
+</span></code></pre><h3 id='url-parameters-12'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1746,62 +2019,16 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 <td>Filtra por hora, Possible values:  search_next , lunch , dinner , all , HH:MM.</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <p><code>GET https://search.chefsclub.com.br/api/v6/filters/&lt;FILTER_TYPE&gt;</code></p>
-<h1 id='reviews'>Reviews</h1><h2 id='retrieve-reviews'>Retrieve Reviews</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v2/restaurants/<span class="o">{</span>restaurantId<span class="o">}</span>/reviews <span class="se">\</span>
-  -i -X GET <span class="se">\</span>
-  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -H <span class="s2">"X-Client-Access-Token: access_token"</span> <span class="se">\</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"average_rating"</span><span class="p">:</span><span class="mf">5.0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"reviews_count"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"rating_distribution"</span><span class="p">:{</span><span class="s2">"1"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">"4"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s2">"5"</span><span class="p">:</span><span class="mi">5</span><span class="p">},</span><span class="w">
-  </span><span class="s2">"reviews"</span><span class="p">:[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"rating"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Muito bom!"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"aspects"</span><span class="p">:[{</span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Desconto obtido"</span><span class="p">},{</span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Qualidade da comida"</span><span class="p">}],</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2017-04-16T21:37:11-03:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"author_name"</span><span class="p">:</span><span class="s2">"Claudio Augusto"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"rating"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"comment"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"aspects"</span><span class="p">:[{</span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Variedade do cardápio"</span><span class="p">},{</span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Atendimento"</span><span class="p">},{</span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Desconto obtido"</span><span class="p">},{</span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Qualidade da comida"</span><span class="p">}],</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2017-02-13T00:24:35-02:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"author_name"</span><span class="p">:</span><span class="s2">"Beatriz M."</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='url-parameters-10'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>restaurant_id</td>
-<td>Id do restaurante.</td>
-</tr>
-<tr>
-<td>page</td>
-<td>Página desejada</td>
-</tr>
-</tbody></table>
-<h1 id='examples'>Examples</h1><h1 id='surveys-v3'>Surveys (V3)</h1><h2 id='get-surveys'>Get surveys</h2>
+<h1 id='surveys-v3'>Surveys (V3)</h1><h2 id='get-surveys'>Get surveys</h2>
 <p>To grab specific survey to the usage can you use:</p>
 
 <p><code>GET //:troisgros_endpoint/api/v3/surveys/:usage_id</code></p>
-<h3 id='example-of-request'>Example of request</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="s2">"</span><span class="nv">$troisgros_endpoint</span><span class="s2">/api/v3/surveys/</span><span class="nv">$usage_id</span><span class="s2">"</span> <span class="se">\</span>
+<h3 id='example-of-request-2'>Example of request</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="s2">"</span><span class="nv">$troisgros_endpoint</span><span class="s2">/api/v3/surveys/</span><span class="nv">$usage_id</span><span class="s2">"</span> <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>
   -H <span class="s1">'X-Client-Access-Token: $X_Client_Access_Token
-</span></code></pre><h3 id='example-of-response'>Example of response</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span></code></pre><h3 id='example-of-response-2'>Example of response</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -1836,7 +2063,7 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='write-a-survey'>Write a Survey</h2>
 <p><code>POST //:troisgros_endpoint/api/v3/surveys/</code></p>
-<h2 id='example-of-request-2'>Example of request</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"</span><span class="nv">$troisgros_endpoint</span><span class="s2">/api/v3/surveys/"</span> <span class="se">\</span>
+<h2 id='example-of-request-3'>Example of request</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"</span><span class="nv">$troisgros_endpoint</span><span class="s2">/api/v3/surveys/"</span> <span class="se">\</span>
   -H <span class="s1">'Contente-Type: application/json'</span>
   -H <span class="s2">"X-Client-Access-Token: </span><span class="nv">$X_CLIENT_ACCESS_TOKEN</span><span class="s2">"</span>
   -d <span class="s1">'
@@ -1876,9 +2103,9 @@ Example: Baixada Fluminense (Duque de Caxias, Nova iguaçu, Nilopolis)</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-20'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-11'>URL Parameters</h3>
+<h3 id='url-parameters-13'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
