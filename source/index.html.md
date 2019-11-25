@@ -163,6 +163,112 @@ Same as the client creations
 
 `PATCH https://account.chefsclub.com.br/api/v3/clients/:id`
 
+## Show client details
+
+```shell
+curl http://account.chefsclub.com.br/api/v3/clients/8102d882-8ea2-4c28-84ac-38169097d1d7 \
+  -i -X GET \
+  -H "Accept: application/json; charset=utf-8" \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -H "X-Client-Access-Token: 7zwdHSrzxqGHvFxEPuxAwZRFat3f4dxN-F6GxdHZocFER6ZYqUDcxjZrDxF_aYmU9_y8n5bMrV-yaiiyTBgGEDyGWsQMSojU44z-Cz8zCZftmCYbh5sh_j_mx11ht_VySkVZAkaQ6nxc63Sq2B1nVa9s9qdCbsMXKt9dxqsAghPxgNK2ubzt3AD2bcfwGViXwPw-G9aMTgG-NQSHa7gPq1ucsyHsDq9nyQ4pWuyiSAi"
+  -d ''
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "created_at": "2018-03-02T12:40:30.583-03:00",
+  "updated_at": "2019-11-07T16:58:37.503-03:00",
+  "client": {
+    "tasting": 30,
+    "personal": {
+      "full_name": "Marcos Serpa",
+      "email": "marquito_cabrito@gmail.com",
+      "gender": "M",
+      "cpf": "13219951700",
+      "mobile_number": "219191991919",
+      "birthdate": "1986-12-29",
+      "referral_link": "http://chefsclub.refr.cc/marcosserpa",
+      "facebook_user_id": "818181818181",
+      "profile_image_url": "https://graph.facebook.com/818181818181/picture?type=large"
+    },
+    "address": {
+      "zipcode": "22041080",
+      "street": "Rua Anita Garibaldi",
+      "number": "90",
+      "complement": "",
+      "reference": "",
+      "neighbourhood": "Copacabana",
+      "neighborhood": "Copacabana",
+      "city": "Rio de Janeiro",
+      "state": "RJ"
+    },
+    "subscription": {
+      "is_first": false,
+      "status": "valid",
+      "activation_date": "2019-05-17T00:00:00.000-03:00",
+      "expiration_date": "2020-05-17T23:59:59.000-03:00",
+      "serial": "375050244",
+      "auto_renewal": false,
+      "free_renewal": false,
+      "free_renewal_description": "",
+      "partner_image_url": null,
+      "validity_period": "yearly",
+      "channel": "Influenciadores",
+      "store": {
+        "type": "site"
+      }
+    }
+  }
+}
+```
+
+Show some client information like creation date, name, email...; also returns it's subscription details.
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+uuid | The uuid of the client
+
+
+### HTTP Request
+
+`GET http://account.chefsclub.com.br/api/v3/clients/:uuid`
+
+# Partner Subscriptions Direct Creation
+
+## Partner HAND create a client subscription
+
+```shell
+curl http://chefsclub.com.br/parceria/hand/subscription/create \
+  -i -X POST \
+  -H "Accept: application/json; charset=utf-8" \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d '{
+        "cpf": "10313931700",
+        "coupon": "hand123"
+      }'
+```
+
+> The above command returns a blank JSON with status 200.
+
+
+
+Creates a partner subscription to the client using the coupon.
+
+### Request Body
+
+Parameter | Description
+--------- | -----------
+cpf | Client's CPF
+coupon | Coupon code
+
+### HTTP Request
+
+`POST http://chefsclub.com.br/parceria/hand/subscription/create`
+
 # Session
 
 ## Create a Session
@@ -628,7 +734,7 @@ Essa API tem um outro endpoint.
 
 # Areas
 
-## Retrieve Areeas
+## Retrieve Areas
 
 ```shell
 curl https://search.chefsclub.com.br/api/v6/areas \
@@ -749,8 +855,8 @@ Parameter | Description
 latitude |
 longititude |
 area | The area slug to retrieve the highlights
-neighbourhood_ids | Filtra por bairro. É possível filtrar por múltiplos bairros.
-cuisine_ids |  Filtra por categoria. É possível filtrar por múltiplas categorias
+neighbourhood_id | Filtra por bairro. É possível filtrar por múltiplos bairros.
+cuisine_id |  Filtra por categoria. É possível filtrar por múltiplas categorias
 price_range |  Filtra por faixa de preço Possible values:  2 , 3 , 4 , 5
 offers[] | Filtra por tipo de disponibilidade. É possível especificar múltiplos sources. Possible values: checkin, booking, delivery. Ex.: offers[]=checkin,booking
 seats | Filtra por disponibilidade de número de pessoas
@@ -760,7 +866,7 @@ datetime | Filtra por data e hora
 discount | Filtra por percentual de desconto. Example: 30.
 page | Número da página de resultados Default: 1.
 per_page | Número de resultados (restaurantes) por página
-order | Define a ordenação dos resultados A ordenação padrão muda para name (relevância do nome pesquisado) se a busca for por nome de restaurante. E se a busca for geolocalizada a ordenação padrão muda para nearest (mais próximos). Default: ranking. Possible values:  name , nearest , ranking , recommended .
+order | Define a ordenação dos resultados A ordenação padrão muda para name (relevância do nome pesquisado) se a busca for por nome de restaurante. E se a busca for geolocalizada a ordenação padrão muda para nearest (mais próximos). Default: ranking. Possible values:  name, nearest, ranking, recommended.
 
 
 ### HTTP Request
