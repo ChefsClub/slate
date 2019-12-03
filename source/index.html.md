@@ -856,8 +856,8 @@ latitude |
 longititude |
 area | The area slug to retrieve the highlights
 neighbourhood_id | Filtra por bairro. É possível filtrar por múltiplos bairros.
-cuisine_id |  Filtra por categoria. É possível filtrar por múltiplas categorias
-price_range |  Filtra por faixa de preço Possible values:  2 , 3 , 4 , 5
+cuisine_id[] |  Filtra por categoria. É possível filtrar por múltiplas categorias
+price_range[] |  Filtra por faixa de preço Valores possíveis:  2 , 3 , 4 , 5
 offers[] | Filtra por tipo de disponibilidade. É possível especificar múltiplos sources. Possible values: checkin, booking, delivery. Ex.: offers[]=checkin,booking
 seats | Filtra por disponibilidade de número de pessoas
 date |  Filtra por data hora, formato ISO8601(yyyy-mm-dd)
