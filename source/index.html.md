@@ -242,7 +242,7 @@ uuid | The uuid of the client
 ## Partner HAND create a client subscription
 
 ```shell
-curl http://chefsclub.com.br/parceria/hand/subscription/create \
+curl https://admin.chefsclub.com.br/parceria/hand/subscription/create \
   -i -X POST \
   -H "Accept: application/json; charset=utf-8" \
   -H "Content-Type: application/json; charset=utf-8" \
