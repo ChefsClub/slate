@@ -267,7 +267,7 @@ coupon | Coupon code
 
 ### HTTP Request
 
-`POST http://chefsclub.com.br/parceria/hand/subscription/create`
+`POST http://admin.chefsclub.com.br/parceria/hand/subscription/create`
 
 # Session
 
