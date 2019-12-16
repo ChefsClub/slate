@@ -23,7 +23,7 @@ Seja bem vindo a documentação da API Mobile do ChefsClub
 ## Search an Account
 
 ```shell
-curl https://account.chefsclub.com.br/api/v3/accounts/search?email=marolito@gmail.com -i
+curl https://account.chefsclub.com.br/api/v3/accounts/search?cpf=12345678900 -i
 ```
 
 > If en error occur, the above command returns JSON structured like this:
@@ -400,7 +400,10 @@ curl https://account.chefsclub.com.br/api/v3/recover_passwords \
 
 > The above command does't returns anything
 
-This endpoint sends en email to the client with a password recovery token
+This endpoint sends en email to the client with a password recovery token.
+
+The `auth_key` is the client's cpf. So, the `auth_key` param must have as value
+the client's CPF on the request.
 
 ### HTTP Request
 
