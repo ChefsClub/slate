@@ -395,7 +395,7 @@ password must be informed.
 curl https://account.chefsclub.com.br/api/v3/recover_passwords \
   -i -X POST \
   -H "Content-Type: application/json" \
-  -d '{ "account": { "auth_key" : "email@example.org" } }'
+  -d '{ "account": { "auth_key" : "12345678900" } }'
 ```
 
 > The above command does't returns anything
