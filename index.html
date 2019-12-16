@@ -377,7 +377,7 @@
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
 <p>Seja bem vindo a documentação da API Mobile do ChefsClub</p>
-<h1 id='account'>Account</h1><h2 id='search-an-account'>Search an Account</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/accounts/search?email<span class="o">=</span>marolito@gmail.com -i
+<h1 id='account'>Account</h1><h2 id='search-an-account'>Search an Account</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/accounts/search?cpf<span class="o">=</span>12345678900 -i
 </code></pre>
 <blockquote>
 <p>If en error occur, the above command returns JSON structured like this:</p>
@@ -804,7 +804,10 @@ password must be informed.</p>
 <p>The above command does&#39;t returns anything</p>
 </blockquote>
 
-<p>This endpoint sends en email to the client with a password recovery token</p>
+<p>This endpoint sends en email to the client with a password recovery token.</p>
+
+<p>The <code>auth_key</code> is the client&#39;s cpf. So, the <code>auth_key</code> param must have as value
+the client&#39;s CPF on the request.</p>
 <h3 id='http-request-9'>HTTP Request</h3>
 <p><code>POST https://account.chefsclub.com.br/api/v3/recover_passwords</code></p>
 <h2 id='recover-password'>Recover password</h2><pre class="highlight shell tab-shell"><code>curl https://account.chefsclub.com.br/api/v3/recover_passwords <span class="se">\</span>
